@@ -16,3 +16,15 @@
 .overlay_box {
   -fx-background-color: rgba(0, 0, 0, 0.8);
 }
+
+#login_box {
+  -fx-background-color: rgba(0, 0, 0, 0.7);
+  -fx-background-radius: 2.5%;
+}
+
+#prototype_box {
+  -fx-background-color: rgba(0, 0, 0, 0.7);
+  -fx-background-radius: 2.5%;
+  -fx-pref-height: 50px;
+
+}

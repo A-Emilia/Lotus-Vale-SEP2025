@@ -10,6 +10,8 @@ public class ViewHandler {
 
   public enum ViewType {
     MAIN,
+    LOGIN,
+    PROTOTYPE,
   }
 
   private static Stage stage;
@@ -26,6 +28,8 @@ public class ViewHandler {
     try {
       switch (view) {
         case MAIN -> showMainView();
+        case LOGIN -> showLoginView();
+        case PROTOTYPE -> showPrototypeView();
       }
     } catch(Exception e) {
       e.printStackTrace();
@@ -37,6 +41,18 @@ public class ViewHandler {
 
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Main");
+    stage.setScene(scene);
+  }
+
+  private static void showLoginView() throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(ViewHandler.class.getResource("Login_Page/Login_Page.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
+    stage.setScene(scene);
+  }
+
+  private static void showPrototypeView() throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(ViewHandler.class.getResource("Prototyping/Prototype.fxml"));
+    Scene scene = new Scene(fxmlLoader.load());
     stage.setScene(scene);
   }
 }
