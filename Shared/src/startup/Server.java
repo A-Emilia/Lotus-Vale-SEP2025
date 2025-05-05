@@ -1,16 +1,17 @@
+package startup;
+
 import networking.MainSocketHandler;
-import startup.ServiceProvider;
 
 import java.io.IOException;
 import java.net.ServerSocket;
 import java.net.Socket;
 
-public class ServerObj
+public class Server
 {
 
   private final ServiceProvider serviceProvider;
 
-  public ServerObj(ServiceProvider serviceProvider) {
+  public Server(ServiceProvider serviceProvider) {
     this.serviceProvider = serviceProvider;
   }
 
