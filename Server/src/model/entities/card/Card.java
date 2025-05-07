@@ -40,8 +40,13 @@ public class Card {
   public ArrayList<String> getSubtype() {return subtype;}
   public String getImgUrl() {return imgUrl;}
 
-
-
+  @Override public String toString()
+  {
+    return "Card{" + "id=" + id + ", setCode='" + setCode + '\''
+        + ", name='" + name + '\'' + ", text='" + text + '\'' + ", supertype="
+        + supertype + ", cardType=" + cardType + ", subtype=" + subtype
+        + ", imgUrl='" + imgUrl + '\'' + '}';
+  }
 
   public static class Builder {
     private final int id;
@@ -74,18 +79,42 @@ public class Card {
       return this;
     }
 
-    public Builder superType(ArrayList<String> superType) {
+    public Builder superTypeList(ArrayList<String> superType) {
       this.supertype = CardSupertype.toTypeList(superType);
       return this;
     }
 
-    public Builder cardType(ArrayList<String> cardType) {
+    public Builder superType(String supertype) {
+      if(this.supertype == null) {
+        this.supertype = new ArrayList<>();
+      }
+      this.supertype.add(CardSupertype.toCardSuperType(supertype));
+      return this;
+    }
+
+    public Builder cardTypeList(ArrayList<String> cardType) {
       this.cardType = CardType.toTypeList(cardType);
       return this;
     }
 
-    public Builder subtype(ArrayList<String> subtype) {
+    public Builder cardType(String cardType) {
+      if(this.cardType == null) {
+        this.cardType = new ArrayList<>();
+      }
+      this.cardType.add(CardType.toCardType(cardType));
+      return this;
+    }
+
+    public Builder subtypeList(ArrayList<String> subtype) {
       this.subtype = subtype;
+      return this;
+    }
+
+    public Builder subtype(String subtype) {
+      if(this.subtype == null) {
+        this.subtype = new ArrayList<>();
+      }
+      this.subtype.add(subtype);
       return this;
     }
 

@@ -1,5 +1,7 @@
 package startup;
 
+import networking.Server;
+
 import java.io.IOException;
 
 public class StartServer {

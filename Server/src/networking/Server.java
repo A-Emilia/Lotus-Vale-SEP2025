@@ -1,6 +1,6 @@
-package startup;
+package networking;
 
-import networking.MainSocketHandler;
+import startup.ServiceProvider;
 
 import java.io.IOException;
 import java.net.ServerSocket;

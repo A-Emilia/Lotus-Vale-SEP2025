@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.ToolBar?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.VBox?>
+
+<?import javafx.stage.Screen?>
 
 <AnchorPane id="anchor_pane" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Shared/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Prototyping.PrototypeController">
     <children>
@@ -16,8 +19,13 @@
         </ToolBar>
         <VBox alignment="CENTER" fillWidth="false" mouseTransparent="true" prefHeight="1080.0" prefWidth="1920.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <children>
-            <VBox id="prototype_box" alignment="CENTER" fillWidth="false" prefWidth="500.0" styleClass="prototype_box" stylesheets="@../Shared/style.css" />
+            <ScrollPane id="prototype_box" disable="true" prefHeight="200.0" prefWidth="200.0" styleClass="prototype_box" />
+            <VBox id="prototype_box" alignment="CENTER" fillWidth="false" prefHeight="500" prefWidth="500.0" styleClass="prototype_box" stylesheets="@../Shared/style.css" />
          </children>
         </VBox>
     </children>
+
+    <fx:define>
+        <Screen fx:factory="getPrimary" fx:id="screen" />
+    </fx:define>
 </AnchorPane>
