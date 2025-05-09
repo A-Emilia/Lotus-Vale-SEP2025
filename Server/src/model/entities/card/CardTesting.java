@@ -1,7 +1,7 @@
 package model.entities.card;
 
 import com.google.gson.Gson;
-import communication.DatabaseConnector;
+import networking.DatabaseConnector;
 
 import java.sql.Connection;
 import java.sql.SQLException;

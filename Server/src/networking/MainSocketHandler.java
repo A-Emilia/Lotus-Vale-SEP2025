@@ -1,7 +1,13 @@
 package networking;
 
+import com.google.gson.Gson;
+import communication.Request;
+import communication.Response;
+import communication.ResponseType;
+import communication.request_handlers.RequestHandler;
 import startup.ServiceProvider;
 
+import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.net.Socket;
@@ -9,20 +15,37 @@ import java.net.Socket;
 public class MainSocketHandler implements Runnable {
 
   private final Socket clientSocket;
-  private final ServiceProvider serviceProvider;
 
   public MainSocketHandler(Socket clientSocket, ServiceProvider serviceProvider) {
     this.clientSocket = clientSocket;
-    this.serviceProvider = serviceProvider;
   }
 
-  @Override public void run() {
+  @Override
+  public void run() {
     try {
       ObjectInputStream inc = new ObjectInputStream(clientSocket.getInputStream());
       ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+      handleRequest(inc, out);
 
     } catch (Exception e) {
       e.printStackTrace();
     }
+  }
+
+  private void handleRequest(ObjectInputStream inc, ObjectOutputStream out) throws IOException, ClassNotFoundException
+  {
+    Gson gson = new Gson();
+    Request request = gson.fromJson((String) inc.readObject(), Request.class);
+
+    RequestHandler handler = switch (request.type()) {
+      case CARD -> ServiceProvider.getCardRequestHandler();
+      case USER -> ServiceProvider.getUserRequestHandler();
+      case DECK -> null;
+      case COLLECTION -> null;
+    };
+
+    Object res = handler.handle(request.action(), request.payload());
+    Response response = new Response(ResponseType.OK, res);
+    out.writeObject(response);
   }
 }

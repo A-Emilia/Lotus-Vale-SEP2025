@@ -1,6 +1,10 @@
 package communication;
 
 public enum RequestType {
-  SEND_CARD,
-  // TODO etc
+  CARD,
+  USER,
+  DECK,
+  COLLECTION,
+
+  // TODO All future endpoints
 }
