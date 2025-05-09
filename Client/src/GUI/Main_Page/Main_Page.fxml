@@ -8,40 +8,59 @@
 <?import javafx.scene.layout.RowConstraints?>
 
 <GridPane id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Shared/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Main_Page.MainPageController">
-  <columnConstraints>
-    <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-      <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
-  </columnConstraints>
-  <rowConstraints>
-    <RowConstraints percentHeight="5.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="0.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-      <RowConstraints maxHeight="1080.0" minHeight="10.0" prefHeight="1025.0" vgrow="SOMETIMES" />
-  </rowConstraints>
+    <columnConstraints>
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <!-- Toolbar row -->
+        <RowConstraints percentHeight="5.0" />
+
+        <!-- 20 equally sized layout rows -->
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+    </rowConstraints>
    <children>
-      <Pane prefHeight="1080.0" prefWidth="1920.0" styleClass="overlay_box" GridPane.columnSpan="12" GridPane.rowSpan="13" />
-      <ToolBar id="tool_bar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.8" GridPane.columnSpan="12">
+      <Pane prefHeight="1080.0" prefWidth="1920.0" styleClass="overlay_box" GridPane.columnSpan="20" GridPane.rowSpan="21" />
+      <ToolBar id="tool_bar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.8" GridPane.columnSpan="20">
          <items>
-            <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Login" textFill="WHITE" />
+            <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Login" textFill="WHITE" onAction="#loginButtonPressed"/>
             <Button fx:id="prototypeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#prototypeButtonPressed" text="Prototype" textFill="WHITE" />
          </items>
       </ToolBar>

@@ -10,10 +10,7 @@ public class CardTesting {
   public static void main(String[] args)
   {
     Card card = new Card.Builder(600, "A").name("Jodah, the Sexist").build();
-    Card card2 = new Card.Builder(6969, "uwu").superType("Legendary").superType("Snow").cardType("Land").build();
     System.out.println(card.getName());
-    System.out.println(card2.getSupertype());
-    System.out.println(card2.getCardType());
 
     try(Connection con = DatabaseConnector.getConnection()) {
       System.out.println("Connected to MySQL.");
@@ -21,16 +18,21 @@ public class CardTesting {
       e.printStackTrace();
     }
 
+
+
     Gson gson = new Gson();
-    String jsonString = gson.toJson(card2);
-    System.out.println(jsonString);
+    Card card2 = new Card.Builder(6969, "uwu").superType("Legendary").superType("Snow").cardType("Land").build();
+    System.out.println("Original card before serialization: \n" + card2.toString());
+    System.out.println(card2.getClass() + "\n");
 
-    System.out.println(card2.getClass());
+    String card2Json = gson.toJson(card2);
+    System.out.println("Serialized JSON string of Card2: \n" + card2Json + "\n");
 
-    Card card3 = gson.fromJson(jsonString, Card.class);
-    System.out.println(card2.toString());
-    System.out.println(card3.toString());
-    System.out.println(card3.getClass());
+    //card2Json = "{\"id\":6969,\"setCode\":\"uwu\",\"supertype\":[\"LEGENDARY\",\"SNOW\"],\"cardType\":[\"LAND\"],\"uwu\":\"meow\"}\n";
 
+    Card card2Deserialized = gson.fromJson(card2Json, Card.class);
+
+    System.out.println("Deserialized card from JSON string: \n" + card2Deserialized.toString());
+    System.out.println(card2Deserialized.getClass());
   }
 }
