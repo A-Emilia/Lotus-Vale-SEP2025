@@ -23,8 +23,8 @@ public class MainSocketHandler implements Runnable {
   @Override
   public void run() {
     try {
-      ObjectInputStream inc = new ObjectInputStream(clientSocket.getInputStream());
       ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+      ObjectInputStream inc = new ObjectInputStream(clientSocket.getInputStream());
       handleRequest(inc, out);
 
     } catch (Exception e) {
@@ -40,8 +40,8 @@ public class MainSocketHandler implements Runnable {
     RequestHandler handler = switch (request.type()) {
       case CARD -> ServiceProvider.getCardRequestHandler();
       case USER -> ServiceProvider.getUserRequestHandler();
-      case DECK -> null;
-      case COLLECTION -> null;
+      case DECK -> ServiceProvider.getDeckRequestHandler();
+      case COLLECTION -> ServiceProvider.getCollectionRequestHandler();
     };
 
     Object res = handler.handle(request.action(), request.payload());

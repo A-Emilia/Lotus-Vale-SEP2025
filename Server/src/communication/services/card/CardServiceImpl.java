@@ -1,5 +1,6 @@
 package communication.services.card;
 
+import model.entities.card.Card;
 import persistence.card.CardDao;
 
 public class CardServiceImpl implements CardService {
@@ -7,5 +8,10 @@ public class CardServiceImpl implements CardService {
 
   public CardServiceImpl(CardDao cardDao) {
     this.cardDao = cardDao;
+  }
+
+  @Override
+  public Card getCard(Object payload) {
+    return null;
   }
 }

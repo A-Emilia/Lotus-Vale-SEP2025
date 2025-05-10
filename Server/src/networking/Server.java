@@ -16,7 +16,7 @@ public class Server
   }
 
   public void start() throws IOException {
-    ServerSocket serverSocket = new ServerSocket(6969);
+    ServerSocket serverSocket = new ServerSocket(4269);
 
     while (true) {
       Socket socket = serverSocket.accept();

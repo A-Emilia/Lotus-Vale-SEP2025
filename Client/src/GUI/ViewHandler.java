@@ -1,8 +1,16 @@
 package GUI;
 
+import GUI.Login_Page.LoginPageController;
+import GUI.Login_Page.LoginPageVM;
+import GUI.Main_Page.MainPageController;
+import GUI.Main_Page.MainPageVM;
+import GUI.Prototyping.PrototypeController;
+import GUI.Prototyping.PrototypeVM;
+import GUI.Shared.ViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import networking.card.TCPCardClient;
 
 import java.io.IOException;
 
@@ -36,23 +44,24 @@ public class ViewHandler {
     }
   }
 
-  private static void showMainView() throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(ViewHandler.class.getResource("Main_Page/Main_Page.fxml"));
+  private static void initializeView(String viewPath, ViewController controller) throws IOException {
+    FXMLLoader fxmlLoader = new FXMLLoader(ViewHandler.class.getResource(viewPath));
+    fxmlLoader.setControllerFactory(ignore -> controller);
 
     Scene scene = new Scene(fxmlLoader.load());
-    stage.setTitle("Main");
+    stage.setTitle("Lotus Vale");
     stage.setScene(scene);
+  }
+
+  private static void showMainView() throws IOException {
+    initializeView("Main_Page/Main_Page.fxml", new MainPageController(new MainPageVM()));
   }
 
   private static void showLoginView() throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(ViewHandler.class.getResource("Login_Page/Login_Page.fxml"));
-    Scene scene = new Scene(fxmlLoader.load());
-    stage.setScene(scene);
+    initializeView("Login_Page/Login_Page.fxml", new LoginPageController(new LoginPageVM()));
   }
 
   private static void showPrototypeView() throws IOException {
-    FXMLLoader fxmlLoader = new FXMLLoader(ViewHandler.class.getResource("Prototyping/Prototype.fxml"));
-    Scene scene = new Scene(fxmlLoader.load());
-    stage.setScene(scene);
+    initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPCardClient())));
   }
 }

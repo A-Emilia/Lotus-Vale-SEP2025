@@ -9,8 +9,8 @@ public class UserRequestHandler implements RequestHandler {
     this.userService = userService;
   }
 
-  @Override public Object handle(String action, Object payload)
-  {
+  @Override
+  public Object handle(String action, Object payload) {
     return null;
   }
 }

@@ -1,11 +1,16 @@
 package communication.request_handlers;
 
-public class DeckRequestHandler implements RequestHandler {
+import communication.services.deck.DeckService;
 
+public class DeckRequestHandler implements RequestHandler {
+  private DeckService deckService;
+
+  public DeckRequestHandler(DeckService deckService) {
+    this.deckService = deckService;
+  }
 
   @Override
-  public Object handle(String action, Object payload)
-  {
+  public Object handle(String action, Object payload) {
     return null;
   }
 }
