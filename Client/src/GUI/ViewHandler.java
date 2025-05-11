@@ -63,6 +63,6 @@ public class ViewHandler {
   }
 
   private static void showPrototypeView() throws IOException {
-    initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPLotusClient())));
+    initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPCardClient())));
   }
 }

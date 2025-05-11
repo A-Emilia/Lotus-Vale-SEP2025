@@ -7,14 +7,19 @@ import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.entities.card.Card;
 import networking.card.CardClient;
+import networking.card.TCPCardClient;
 import networking.lotus.LotusClient;
 
+import java.util.ArrayList;
+
 public class PrototypeVM {
-  private final LotusClient lotusClient;
+  //private final LotusClient lotusClient;
+  private final TCPCardClient cardClient;
   private final Gson gson;
 
-  public PrototypeVM(LotusClient lotusClient) {
-    this.lotusClient = lotusClient;
+  public PrototypeVM(TCPCardClient cardClient) {
+    this.cardClient = cardClient;
+    //this.lotusClient = lotusClient;
     this.gson = new Gson();
   }
 
@@ -30,13 +35,15 @@ public class PrototypeVM {
 
   public void search() {
 
+    GetCardRequest cardRequest = new GetCardRequest(searchProperty().get(), null, null);
 
-    GetLotusRequest lotusRequest = new GetLotusRequest(searchProperty.get(), "LEA");
-    // Should GSON serialization really happen here?
-    // I feel like the packaging should be done in the client.
     try {
-      Card lotus = lotusClient.getLotus(lotusRequest);
-      System.out.println(lotus);
+      ArrayList<Card> cards = cardClient.getCard(cardRequest);
+
+      for (Card card : cards) {
+        System.out.println(card.toString());
+      }
+
     }
     catch (Exception e) {
       throw new RuntimeException(e);

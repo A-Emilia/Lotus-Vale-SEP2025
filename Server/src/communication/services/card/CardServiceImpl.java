@@ -1,14 +1,17 @@
 package communication.services.card;
 
 import com.google.gson.Gson;
+import communication.requests.card_requests.GetCardRequest;
 import communication.requests.card_requests.GetLotusRequest;
 import model.entities.card.Card;
 import networking.DatabaseConnector;
 import persistence.card.CardDao;
+import utilities.querying.CardQueryBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -20,8 +23,24 @@ public class CardServiceImpl implements CardService {
   }
 
   @Override
-  public Card getCard(Object payload) {
-    return null;
+  public ArrayList<Card> getCard(GetCardRequest payload) {
+
+    CardQueryBuilder getQuery = CardQueryBuilder.getRequest(payload);
+
+    try(Connection con = DatabaseConnector.getConnection()) {
+      PreparedStatement sqlStatement = con.prepareStatement(getQuery.build());
+      List<Object> cardParams = getQuery.getCardParam();
+
+      for (int i = 0; i < cardParams.size(); i++) {
+        sqlStatement.setString(i+1, (String) cardParams.get(i));
+      }
+
+      ResultSet rs = sqlStatement.executeQuery();
+
+      return Card.sqlToCards(rs);
+    } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
   }
 
   @Override

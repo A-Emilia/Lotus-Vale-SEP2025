@@ -4,6 +4,8 @@ import model.entities.card.components.CardSupertype;
 import model.entities.card.components.CardType;
 
 import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,6 +49,35 @@ public class Card implements Serializable {
         + ", name='" + name + '\'' + ", text='" + text + '\'' + ", supertype="
         + supertype + ", cardType=" + cardType + ", subtype=" + subtype
         + ", imgUrl='" + imgUrl + '\'' + '}';
+  }
+
+  public static ArrayList<Card> sqlToCards(ResultSet rs) throws SQLException {
+    ArrayList<Card> cards = new ArrayList<>();
+
+    while (rs.next()) {
+      int id = rs.getInt("id");
+      String setCode = rs.getString("setCode");
+      String name = rs.getString("name");
+      // Mana Cost
+      String text = rs.getString("text");
+      // CardSuperType
+      // CardType
+      // Subtype
+      // url
+
+      Card card = new Card.Builder(id, setCode)
+          .name(name)
+          //.manaCost()
+          .text(text)
+          //.superType()
+          //.cardType()
+          //.subtype()
+          //.url()
+          .build();
+      cards.add(card);
+    }
+
+    return cards;
   }
 
   public static class Builder {
