@@ -1,6 +1,6 @@
 package communication.requests.card_requests;
 
-public record getCardRequest() {
+public record GetCardRequest() {
 
   // TODO: FUCK MY BRAIN
 

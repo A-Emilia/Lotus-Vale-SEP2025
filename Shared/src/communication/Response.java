@@ -1,4 +1,6 @@
 package communication;
 
-public record Response(ResponseType type, Object payload) {
+import java.io.Serializable;
+
+public record Response(ResponseType type, Object payload) implements Serializable {
 }

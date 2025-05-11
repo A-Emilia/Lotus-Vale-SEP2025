@@ -11,6 +11,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
 import networking.card.TCPCardClient;
+import networking.lotus.TCPLotusClient;
 
 import java.io.IOException;
 
@@ -62,6 +63,6 @@ public class ViewHandler {
   }
 
   private static void showPrototypeView() throws IOException {
-    initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPCardClient())));
+    initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPLotusClient())));
   }
 }

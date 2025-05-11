@@ -1,4 +1,6 @@
 package communication;
 
-public record Request(RequestType type, String action, Object payload) {
+import java.io.Serializable;
+
+public record Request(RequestType type, String action, Object payload) implements Serializable {
 }

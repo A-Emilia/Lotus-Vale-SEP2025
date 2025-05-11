@@ -25,8 +25,10 @@ public class SocketService {
         ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
         ObjectInputStream inc = new ObjectInputStream(socket.getInputStream())) {
 
+      System.out.println("Socket Service Out: " + request);
       out.writeObject(request);
       Response response = (Response) inc.readObject();
+      System.out.println("Socket Service Inc: " + response);
 
       switch (response.type()) {
         case OK -> {return response.payload();}

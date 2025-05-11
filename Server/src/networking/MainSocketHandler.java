@@ -34,11 +34,13 @@ public class MainSocketHandler implements Runnable {
 
   private void handleRequest(ObjectInputStream inc, ObjectOutputStream out) throws IOException, ClassNotFoundException
   {
-    Gson gson = new Gson();
-    Request request = gson.fromJson((String) inc.readObject(), Request.class);
+    //Gson gson = new Gson();
+    //Request request = gson.fromJson((String) inc.readObject(), Request.class);
+    Request request = (Request) inc.readObject();
+    System.out.println("Main Socket Handler Inc: " + request);
 
     RequestHandler handler = switch (request.type()) {
-      case CARD -> ServiceProvider.getCardRequestHandler();
+      case CARD, LOTUS -> ServiceProvider.getCardRequestHandler();
       case USER -> ServiceProvider.getUserRequestHandler();
       case DECK -> ServiceProvider.getDeckRequestHandler();
       case COLLECTION -> ServiceProvider.getCollectionRequestHandler();

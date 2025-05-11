@@ -3,10 +3,11 @@ package model.entities.card;
 import model.entities.card.components.CardSupertype;
 import model.entities.card.components.CardType;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
-public class Card {
+public class Card implements Serializable {
   private final int id;
   private final String setCode;
   private final String name;
