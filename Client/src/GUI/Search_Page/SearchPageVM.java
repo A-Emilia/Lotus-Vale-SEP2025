@@ -16,14 +16,21 @@ public class SearchPageVM {
   }
 
   /*---------------------------------------*/
-  private final StringProperty searchProperty = new SimpleStringProperty();
-  public StringProperty searchProperty() {
-    return searchProperty;
+  private final StringProperty nameSearchProperty = new SimpleStringProperty();
+  private final StringProperty textSearchProperty = new SimpleStringProperty();
+
+  public StringProperty nameSearchProperty() {
+    return nameSearchProperty;
   }
 
-  public void search() {
+  public StringProperty textSearchProperty() {
+    return textSearchProperty;
+  }
 
-    GetCardRequest cardRequest = new GetCardRequest(searchProperty().get(), null, null);
+
+  public ArrayList<Card> search() {
+
+    GetCardRequest cardRequest = new GetCardRequest(nameSearchProperty().get(), null, textSearchProperty.get());
 
     try {
       ArrayList<Card> cards = cardClient.getCard(cardRequest);
@@ -32,6 +39,7 @@ public class SearchPageVM {
         System.out.println(card.toString());
       }
 
+      return cards;
     }
     catch (Exception e) {
       throw new RuntimeException(e);

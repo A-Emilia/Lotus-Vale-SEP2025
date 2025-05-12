@@ -18,6 +18,7 @@ public class Card implements Serializable {
   private final ArrayList<CardSupertype> supertype;
   private final ArrayList<CardType> cardType;
   private final ArrayList<String> subtype;
+  private final Integer multiverseId;
   private final String imgUrl;
 
   private Card(Builder builder) {
@@ -26,6 +27,7 @@ public class Card implements Serializable {
     // TODO Mana cost
     this.name = builder.name;
     this.text = builder.text;
+    this.multiverseId = builder.multiverseId;
 
     // Types
     this.supertype = builder.supertype;
@@ -41,14 +43,14 @@ public class Card implements Serializable {
   public ArrayList<CardSupertype> getSupertype() {return supertype;}
   public ArrayList<CardType> getCardType() {return cardType;}
   public ArrayList<String> getSubtype() {return subtype;}
+  public int getMultiverseId() {return multiverseId;}
   public String getImgUrl() {return imgUrl;}
 
-  @Override public String toString()
-  {
-    return "Card{" + "id=" + id + ", setCode='" + setCode + '\''
-        + ", name='" + name + '\'' + ", text='" + text + '\'' + ", supertype="
-        + supertype + ", cardType=" + cardType + ", subtype=" + subtype
-        + ", imgUrl='" + imgUrl + '\'' + '}';
+  @Override public String toString() {
+    return "Card{" + "id=" + id + ", setCode='" + setCode + '\'' + ", name='"
+        + name + '\'' + ", text='" + text + '\'' + ", supertype=" + supertype
+        + ", cardType=" + cardType + ", subtype=" + subtype + ", multiverseId="
+        + multiverseId + ", imgUrl='" + imgUrl + '\'' + '}';
   }
 
   public static ArrayList<Card> sqlToCards(ResultSet rs) throws SQLException {
@@ -64,6 +66,7 @@ public class Card implements Serializable {
       // CardType
       // Subtype
       // url
+      Integer multiverseId = rs.getInt("multiverseId");
 
       Card card = new Card.Builder(id, setCode)
           .name(name)
@@ -73,6 +76,8 @@ public class Card implements Serializable {
           //.cardType()
           //.subtype()
           //.url()
+          .multiverseId(multiverseId)
+          .gathererImgUrl()
           .build();
       cards.add(card);
     }
@@ -89,6 +94,7 @@ public class Card implements Serializable {
     private ArrayList<CardSupertype> supertype;
     private ArrayList<CardType> cardType;
     private ArrayList<String> subtype;
+    private Integer multiverseId;
     private String imgUrl;
 
     public Builder(int id, String setCode) {
@@ -150,8 +156,19 @@ public class Card implements Serializable {
       return this;
     }
 
+    public Builder multiverseId(int multiverseId) {
+      this.multiverseId = multiverseId;
+      return this;
+    }
+
     public Builder imgUrl(String imgUrl) {
       this.imgUrl = imgUrl;
+      return this;
+    }
+
+    public Builder gathererImgUrl() {
+      if (this.multiverseId == null) {multiverseId = 0;}
+      this.imgUrl = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" + this.multiverseId + "&type=card";
       return this;
     }
 

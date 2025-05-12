@@ -34,5 +34,8 @@ public class CardTesting {
 
     System.out.println("Deserialized card from JSON string: \n" + card2Deserialized.toString());
     System.out.println(card2Deserialized.getClass());
+
+    Card card3 = new Card.Builder(6969, "LEA").multiverseId(420).gathererImgUrl().build();
+    System.out.println(card3.getImgUrl());
   }
 }

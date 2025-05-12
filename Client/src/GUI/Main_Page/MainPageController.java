@@ -18,6 +18,9 @@ public class MainPageController implements ViewController {
 
   public Button loginButton;
   public Button prototypeButton;
+  public Button registerButton;
+  public Button homeButton;
+  public Button searchMenuButton;
 
   public void initialize() {
 
@@ -29,5 +32,16 @@ public class MainPageController implements ViewController {
 
   public void prototypeButtonPressed(ActionEvent actionEvent) {
     ViewHandler.showView(ViewHandler.ViewType.PROTOTYPE);
+  }
+
+  public void registerButtonPressed(ActionEvent actionEvent) {
+  }
+
+  public void homeButtonPressed(ActionEvent actionEvent) {
+    ViewHandler.showView(ViewHandler.ViewType.MAIN);
+  }
+
+  public void searchMenuButtonPressed(ActionEvent actionEvent) {
+    ViewHandler.showView(ViewHandler.ViewType.SEARCH);
   }
 }

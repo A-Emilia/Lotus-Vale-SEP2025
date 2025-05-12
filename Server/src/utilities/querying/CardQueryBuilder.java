@@ -2,26 +2,30 @@ package utilities.querying;
 
 import communication.requests.card_requests.GetCardRequest;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
 public class CardQueryBuilder implements QueryBuilder {
-  private final StringBuilder sql = new StringBuilder("SELECT * FROM cards c WHERE 1=1");
+  private final StringBuilder sql = new StringBuilder("SELECT c.*, ci.multiverseId FROM cards c, cardidentifiers ci WHERE 1=1");
   private final List<Object> cardParam = new ArrayList<>();
 
   public static CardQueryBuilder getRequest(GetCardRequest request) {
     CardQueryBuilder res = new CardQueryBuilder()
         .filterByName(request.name())
         .filterBySetCode(request.setCode())
-        .filterByTextContains(request.textContains());
+        .filterByTextContains(request.textContains())
+        .getMultiverseId();
 
     return res;
   }
 
   public CardQueryBuilder filterByName(String name) {
     if (name != null && !name.isEmpty()) {
-      sql.append(" AND c.name = ?");
-      cardParam.add(name);
+      sql.append(" AND c.name LIKE ?");
+      cardParam.add("%" + name + "%");
     }
     return this;
   }
@@ -42,12 +46,23 @@ public class CardQueryBuilder implements QueryBuilder {
     return this;
   }
 
-  public String build() {
-    return sql.toString();
+  public CardQueryBuilder getMultiverseId() {
+    sql.append(" AND c.id = ci.id ");
+    return this;
+  }
+
+  // Add connection as input to the build method?
+  public PreparedStatement build(Connection con) throws SQLException {
+    PreparedStatement res = con.prepareStatement(sql.toString());
+
+    for (int i = 0; i < cardParam.size(); i++) {
+      res.setString(i+1, (String) cardParam.get(i));
+    }
+
+    return res;
   }
 
   public List<Object> getCardParam() {
     return cardParam;
   }
-
 }

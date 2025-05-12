@@ -28,12 +28,7 @@ public class CardServiceImpl implements CardService {
     CardQueryBuilder getQuery = CardQueryBuilder.getRequest(payload);
 
     try(Connection con = DatabaseConnector.getConnection()) {
-      PreparedStatement sqlStatement = con.prepareStatement(getQuery.build());
-      List<Object> cardParams = getQuery.getCardParam();
-
-      for (int i = 0; i < cardParams.size(); i++) {
-        sqlStatement.setString(i+1, (String) cardParams.get(i));
-      }
+      PreparedStatement sqlStatement = getQuery.build(con);
 
       ResultSet rs = sqlStatement.executeQuery();
 

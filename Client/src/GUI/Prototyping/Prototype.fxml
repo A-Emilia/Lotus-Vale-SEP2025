@@ -62,12 +62,43 @@
     </rowConstraints>
     <children>
         <Pane prefHeight="1080.0" prefWidth="1920.0" styleClass="overlay_box" GridPane.columnSpan="20" GridPane.rowSpan="21" />
-        <ToolBar id="tool_bar" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" opacity="0.8" GridPane.columnSpan="20">
-            <items>
-                <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Login" textFill="WHITE" />
-                <Button fx:id="prototypeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#prototypeButtonPressed" text="Prototype" textFill="WHITE" />
-            </items>
-        </ToolBar>
+        <GridPane id="tool_bar" opacity="0.8" GridPane.columnSpan="20">
+            <columnConstraints>
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+                <ColumnConstraints percentWidth="5.0" />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints percentHeight="25.0" />
+                <RowConstraints percentHeight="25.0" />
+                <RowConstraints percentHeight="25.0" />
+                <RowConstraints percentHeight="25.0" />
+            </rowConstraints>
+            <children>
+                <Button fx:id="registerButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerButtonPressed" text="Register" textFill="WHITE" GridPane.columnIndex="18" GridPane.rowSpan="4" />
+                <Button fx:id="homeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonPressed" text="Home" textFill="WHITE" GridPane.rowSpan="4" />
+                <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginButtonPressed" text="Login" textFill="WHITE" GridPane.columnIndex="19" GridPane.rowSpan="4" />
+                <Button fx:id="prototypeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#prototypeButtonPressed" text="Prototype" textFill="WHITE" GridPane.columnIndex="3" GridPane.rowSpan="4" />
+                <Button fx:id="searchMenuButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchMenuButtonPressed" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowSpan="4" />
+            </children>
+        </GridPane>
         <GridPane id="login_box" styleClass="login_box" stylesheets="@../Shared/style.css" GridPane.columnIndex="6" GridPane.columnSpan="8" GridPane.rowIndex="7" GridPane.rowSpan="8">
             <columnConstraints>
                 <ColumnConstraints percentWidth="10" />

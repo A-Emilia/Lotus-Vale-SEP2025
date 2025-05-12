@@ -6,14 +6,20 @@ import GUI.Main_Page.MainPageController;
 import GUI.Main_Page.MainPageVM;
 import GUI.Prototyping.PrototypeController;
 import GUI.Prototyping.PrototypeVM;
+import GUI.Search_Page.SearchPageController;
+import GUI.Search_Page.SearchPageVM;
+import GUI.Search_Result_Page.SearchResultPageController;
+import GUI.Search_Result_Page.SearchResultPageVM;
 import GUI.Shared.ViewController;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
+import model.entities.card.Card;
 import networking.card.TCPCardClient;
 import networking.lotus.TCPLotusClient;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 public class ViewHandler {
 
@@ -21,6 +27,11 @@ public class ViewHandler {
     MAIN,
     LOGIN,
     PROTOTYPE,
+    SEARCH,
+  }
+
+  public enum ViewTypeWithResource {
+    SEARCH_RESULT,
   }
 
   private static Stage stage;
@@ -39,6 +50,17 @@ public class ViewHandler {
         case MAIN -> showMainView();
         case LOGIN -> showLoginView();
         case PROTOTYPE -> showPrototypeView();
+        case SEARCH -> showSearchPageView();}
+    } catch(Exception e) {
+      e.printStackTrace();
+    }
+  }
+
+  public static void showViewWithResource(ViewTypeWithResource view, Object resource) {
+    try {
+      switch (view) {
+        // TODO Add check
+        case SEARCH_RESULT -> showSearchResultView((ArrayList<Card>) resource);
       }
     } catch(Exception e) {
       e.printStackTrace();
@@ -64,5 +86,13 @@ public class ViewHandler {
 
   private static void showPrototypeView() throws IOException {
     initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPCardClient())));
+  }
+
+  private static void showSearchPageView() throws IOException {
+    initializeView("Search_Page/Search_Page.fxml", new SearchPageController(new SearchPageVM(new TCPCardClient())));
+  }
+
+  private static void showSearchResultView(ArrayList<Card> res) throws IOException {
+    initializeView("Search_Result_Page/Search_Result_Page.fxml", new SearchResultPageController(new SearchResultPageVM(), res));
   }
 }
