@@ -2,13 +2,10 @@ package GUI.Prototyping;
 
 import com.google.gson.Gson;
 import communication.requests.card_requests.GetCardRequest;
-import communication.requests.card_requests.GetLotusRequest;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.entities.card.Card;
-import networking.card.CardClient;
 import networking.card.TCPCardClient;
-import networking.lotus.LotusClient;
 
 import java.util.ArrayList;
 

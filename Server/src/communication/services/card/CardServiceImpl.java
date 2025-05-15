@@ -1,19 +1,17 @@
 package communication.services.card;
 
-import com.google.gson.Gson;
 import communication.requests.card_requests.GetCardRequest;
 import communication.requests.card_requests.GetLotusRequest;
 import model.entities.card.Card;
 import networking.DatabaseConnector;
 import persistence.card.CardDao;
-import utilities.querying.CardQueryBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.NoSuchElementException;
 
 public class CardServiceImpl implements CardService {
   private CardDao cardDao;
@@ -23,19 +21,16 @@ public class CardServiceImpl implements CardService {
   }
 
   @Override
-  public ArrayList<Card> getCard(GetCardRequest payload) {
+  public ArrayList<Card> getCard(GetCardRequest payload) throws NoSuchElementException {
+    ArrayList<Card> res = cardDao.getCard(payload);
+    // Convert to some sort of DTO? I feel I definitely do not need it.
+    // Error handling.
 
-    CardQueryBuilder getQuery = CardQueryBuilder.getRequest(payload);
-
-    try(Connection con = DatabaseConnector.getConnection()) {
-      PreparedStatement sqlStatement = getQuery.build(con);
-
-      ResultSet rs = sqlStatement.executeQuery();
-
-      return Card.sqlToCards(rs);
-    } catch (SQLException e) {
-      throw new RuntimeException(e);
+    if (res.isEmpty()) {
+      throw new NoSuchElementException("No cards found.");
     }
+
+    return res;
   }
 
   @Override

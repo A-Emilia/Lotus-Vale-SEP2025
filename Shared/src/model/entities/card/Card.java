@@ -7,7 +7,6 @@ import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 
 public class Card implements Serializable {
   private final int id;
@@ -172,9 +171,7 @@ public class Card implements Serializable {
       return this;
     }
 
-    public Card build() {
-      return new Card(this);
-    }
+    public Card build() {return new Card(this);}
 
     /*
     public Builder(int id,

@@ -16,7 +16,6 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.entities.card.Card;
 import networking.card.TCPCardClient;
-import networking.lotus.TCPLotusClient;
 
 import java.io.IOException;
 import java.util.ArrayList;

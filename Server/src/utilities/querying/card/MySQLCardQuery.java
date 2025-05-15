@@ -1,6 +1,7 @@
-package utilities.querying;
+package utilities.querying.card;
 
 import communication.requests.card_requests.GetCardRequest;
+import utilities.querying.QueryBuilder;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,12 +9,12 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class CardQueryBuilder implements QueryBuilder {
+public class MySQLCardQuery implements QueryBuilder {
   private final StringBuilder sql = new StringBuilder("SELECT c.*, ci.multiverseId FROM cards c, cardidentifiers ci WHERE 1=1");
   private final List<Object> cardParam = new ArrayList<>();
 
-  public static CardQueryBuilder getRequest(GetCardRequest request) {
-    CardQueryBuilder res = new CardQueryBuilder()
+  public static MySQLCardQuery getRequest(GetCardRequest request) {
+    MySQLCardQuery res = new MySQLCardQuery()
         .filterByName(request.name())
         .filterBySetCode(request.setCode())
         .filterByTextContains(request.textContains())
@@ -22,7 +23,7 @@ public class CardQueryBuilder implements QueryBuilder {
     return res;
   }
 
-  public CardQueryBuilder filterByName(String name) {
+  public MySQLCardQuery filterByName(String name) {
     if (name != null && !name.isEmpty()) {
       sql.append(" AND c.name LIKE ?");
       cardParam.add("%" + name + "%");
@@ -30,7 +31,7 @@ public class CardQueryBuilder implements QueryBuilder {
     return this;
   }
 
-  public CardQueryBuilder filterBySetCode(String setCode) {
+  public MySQLCardQuery filterBySetCode(String setCode) {
     if (setCode != null && !setCode.isEmpty()) {
       sql.append(" AND c.setCode = ?");
       cardParam.add(setCode);
@@ -38,7 +39,7 @@ public class CardQueryBuilder implements QueryBuilder {
     return this;
   }
 
-  public CardQueryBuilder filterByTextContains(String text) {
+  public MySQLCardQuery filterByTextContains(String text) {
     if (text != null && !text.isEmpty()) {
       sql.append(" AND c.text LIKE ?");
       cardParam.add("%" + text + "%");
@@ -46,7 +47,7 @@ public class CardQueryBuilder implements QueryBuilder {
     return this;
   }
 
-  public CardQueryBuilder getMultiverseId() {
+  public MySQLCardQuery getMultiverseId() {
     sql.append(" AND c.id = ci.id ");
     return this;
   }

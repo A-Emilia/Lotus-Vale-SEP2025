@@ -4,30 +4,31 @@ import java.util.ArrayList;
 
 public class Deck {
   private final int deckId;
-  private final String owner;
+  private final User owner;
   private final String deckName;
   private final ArrayList<Integer> cardIds;
 
   private Deck(Builder builder) {
     this.deckId = builder.deckId;
-    // TODO Replace Owner with User later.
+    // TODO Maybe replace with User ID
     this.owner = builder.owner;
     this.deckName = builder.deckName;
     this.cardIds = builder.cardIds;
   }
 
   public int getDeckId() {return deckId;}
-  public String getOwner() {return owner;}
+  public User getOwner() {return owner;}
   public String getDeckName() {return deckName;}
   public ArrayList<Integer> getCardIds() {return cardIds;}
+  public int getOwnerId() {return owner.getId();}
 
   public static class Builder {
     private final int deckId;
-    private final String owner;
+    private final User owner;
     private String deckName;
     private ArrayList<Integer> cardIds;
 
-    public Builder(int deckId, String owner) {
+    public Builder(int deckId, User owner) {
       this.deckId = deckId;
       this.owner = owner;
     }

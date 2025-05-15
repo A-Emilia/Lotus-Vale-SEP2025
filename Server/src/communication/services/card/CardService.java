@@ -8,6 +8,6 @@ import java.util.ArrayList;
 
 public interface CardService {
   ArrayList<Card> getCard(GetCardRequest payload);
-  Card getLotus(GetLotusRequest request);
+  Card getLotus(GetLotusRequest payload);
 
 }
