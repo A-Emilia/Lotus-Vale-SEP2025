@@ -14,13 +14,11 @@ public class MySQLCardQuery implements QueryBuilder {
   private final List<Object> cardParam = new ArrayList<>();
 
   public static MySQLCardQuery getRequest(GetCardRequest request) {
-    MySQLCardQuery res = new MySQLCardQuery()
+    return new MySQLCardQuery()
         .filterByName(request.name())
         .filterBySetCode(request.setCode())
         .filterByTextContains(request.textContains())
         .getMultiverseId();
-
-    return res;
   }
 
   public MySQLCardQuery filterByName(String name) {

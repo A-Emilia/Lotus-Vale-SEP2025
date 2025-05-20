@@ -1,4 +1,4 @@
-package GUI.Search_Result_Page;
+package GUI.Collection_Page;
 
 import GUI.Shared.ViewController;
 import GUI.ViewHandler;
@@ -12,39 +12,33 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.entities.card.Card;
 
-import java.util.ArrayList;
+public class CollectionPageController implements ViewController {
+  private final CollectionPageVM vm;
 
-public class SearchResultPageController implements ViewController {
-  private final SearchResultPageVM vm;
-
-  public SearchResultPageController(SearchResultPageVM vm) {
-    this.vm = vm;
-    // TODO Remove all additional copies of the same card.
-  }
+  public CollectionPageController(CollectionPageVM vm) {this.vm = vm;}
 
   /*---------------------------------------*/
-  public Button loginButton;
   public Button homeButton;
+  public Button loginButton;
   public Button searchMenuButton;
   public Button collectionMenuButton;
-
-  public ImageView cardDisplay;
-  public TableView<Card> resultTable;
+  public TableView<Card> collectionTable;
   public TableColumn<Card, String> nameCol;
   public TableColumn<Card, String> setCol;
+  public ImageView cardDisplay;
 
   public void initialize() {
-    resultTable.setItems(vm.displayableCardsProperty());
+    collectionTable.setItems(vm.cardProperty());
     nameCol.setCellValueFactory(new PropertyValueFactory<Card, String>("name"));
     setCol.setCellValueFactory(new PropertyValueFactory<Card, String>("setCode"));
-    resultTable.getColumns().setAll(nameCol, setCol);
+    collectionTable.getColumns().setAll(nameCol, setCol);
 
-    resultTable.getSelectionModel().selectedItemProperty().addListener(this::cardToDisplay);
-    resultTable.itemsProperty().addListener(this::cardToDisplay);
+    collectionTable.getSelectionModel().selectedItemProperty().addListener(this::cardToDisplay);
+    collectionTable.itemsProperty().addListener(this::cardToDisplay);
   }
 
   public void cardToDisplay(Observable observable) {
-    String selectedCardImg = resultTable.getSelectionModel().getSelectedItem().getImgUrl();
+    String selectedCardImg = collectionTable.getSelectionModel().getSelectedItem().getImgUrl();
     Image image = new Image(selectedCardImg);
     cardDisplay.setImage(image);
   }
@@ -65,3 +59,4 @@ public class SearchResultPageController implements ViewController {
     ViewHandler.showView(ViewHandler.ViewType.COLLECTION);
   }
 }
+

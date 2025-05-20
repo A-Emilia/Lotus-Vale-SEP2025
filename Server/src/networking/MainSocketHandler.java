@@ -13,7 +13,6 @@ import java.io.ObjectOutputStream;
 import java.net.Socket;
 
 public class MainSocketHandler implements Runnable {
-
   private final Socket clientSocket;
 
   public MainSocketHandler(Socket clientSocket, ServiceProvider serviceProvider) {

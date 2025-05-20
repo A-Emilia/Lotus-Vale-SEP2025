@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Shared/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Search_Result_Page.SearchResultPageController">
+<GridPane id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Shared/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Collection_Page.CollectionPageController">
     <columnConstraints>
         <ColumnConstraints percentWidth="5.0" />
         <ColumnConstraints percentWidth="5.0" />
@@ -157,7 +157,7 @@
            </rowConstraints>
          <children>
             <ImageView fx:id="cardDisplay" fitHeight="331.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="5" />
-            <TableView fx:id="resultTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="10" GridPane.rowIndex="2" GridPane.rowSpan="12">
+            <TableView fx:id="collectionTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="10" GridPane.rowIndex="2" GridPane.rowSpan="12">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="272.0" text="Card Name" />
                   <TableColumn fx:id="setCol" prefWidth="264.0" text="Set Code" />

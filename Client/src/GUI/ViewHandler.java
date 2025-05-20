@@ -1,11 +1,11 @@
 package GUI;
 
+import GUI.Collection_Page.CollectionPageController;
+import GUI.Collection_Page.CollectionPageVM;
 import GUI.Login_Page.LoginPageController;
 import GUI.Login_Page.LoginPageVM;
 import GUI.Main_Page.MainPageController;
 import GUI.Main_Page.MainPageVM;
-import GUI.Prototyping.PrototypeController;
-import GUI.Prototyping.PrototypeVM;
 import GUI.Search_Page.SearchPageController;
 import GUI.Search_Page.SearchPageVM;
 import GUI.Search_Result_Page.SearchResultPageController;
@@ -16,6 +16,7 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 import model.entities.card.Card;
 import networking.card.TCPCardClient;
+import networking.user.TCPUserClient;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -25,8 +26,8 @@ public class ViewHandler {
   public enum ViewType {
     MAIN,
     LOGIN,
-    PROTOTYPE,
     SEARCH,
+    COLLECTION,
   }
 
   public enum ViewTypeWithResource {
@@ -48,8 +49,9 @@ public class ViewHandler {
       switch (view) {
         case MAIN -> showMainView();
         case LOGIN -> showLoginView();
-        case PROTOTYPE -> showPrototypeView();
-        case SEARCH -> showSearchPageView();}
+        case SEARCH -> showSearchPageView();
+        case COLLECTION -> showCollectionPageView();
+      }
     } catch(Exception e) {
       e.printStackTrace();
     }
@@ -80,11 +82,7 @@ public class ViewHandler {
   }
 
   private static void showLoginView() throws IOException {
-    initializeView("Login_Page/Login_Page.fxml", new LoginPageController(new LoginPageVM()));
-  }
-
-  private static void showPrototypeView() throws IOException {
-    initializeView("Prototyping/Prototype.fxml", new PrototypeController(new PrototypeVM(new TCPCardClient())));
+    initializeView("Login_Page/Login_Page.fxml", new LoginPageController(new LoginPageVM(new TCPUserClient())));
   }
 
   private static void showSearchPageView() throws IOException {
@@ -92,6 +90,10 @@ public class ViewHandler {
   }
 
   private static void showSearchResultView(ArrayList<Card> res) throws IOException {
-    initializeView("Search_Result_Page/Search_Result_Page.fxml", new SearchResultPageController(new SearchResultPageVM(), res));
+    initializeView("Search_Result_Page/Search_Result_Page.fxml", new SearchResultPageController(new SearchResultPageVM(res)));
+  }
+
+  private static void showCollectionPageView() throws IOException {
+    initializeView("Collection_Page/Collection_Page.fxml", new CollectionPageController(new CollectionPageVM(new TCPCardClient())));
   }
 }

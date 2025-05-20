@@ -4,14 +4,14 @@ import communication.requests.card_requests.GetCardRequest;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import model.entities.card.Card;
-import networking.card.TCPCardClient;
+import networking.card.CardClient;
 
 import java.util.ArrayList;
 
 public class SearchPageVM {
-  private final TCPCardClient cardClient;
+  private final CardClient cardClient;
 
-  public SearchPageVM(TCPCardClient cardClient) {
+  public SearchPageVM(CardClient cardClient) {
     this.cardClient = cardClient;
   }
 

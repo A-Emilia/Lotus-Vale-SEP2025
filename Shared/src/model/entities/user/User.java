@@ -1,6 +1,10 @@
-package model.entities;
+package model.entities.user;
 
-public class User {
+import java.io.Serializable;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+
+public class User implements Serializable {
   private final int id;
   private final String username;
   // Gets removed later
@@ -20,6 +24,17 @@ public class User {
     return "User{" + "id=" + id + ", username='" + username + '\''
         + ", password='" + password + '\'' + '}';
   }
+
+  public static User sqlToUser(ResultSet rs) throws SQLException {
+      rs.next();
+
+      int id = rs.getInt("id");
+      String username = rs.getString("username");
+
+      return new Builder(id)
+          .username(username)
+          .build();
+    }
 
   // Delegate everything here to the view model.
   // All types of collections should store the ID of the user if not the user itself.

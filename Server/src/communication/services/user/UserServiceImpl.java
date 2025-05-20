@@ -2,9 +2,10 @@ package communication.services.user;
 
 import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;
-import model.entities.User;
+import model.entities.user.User;
 import persistence.user.UserDao;
 
+import javax.management.InstanceAlreadyExistsException;
 import java.util.NoSuchElementException;
 
 public class UserServiceImpl implements UserService {
@@ -27,7 +28,13 @@ public class UserServiceImpl implements UserService {
   }
 
   @Override
-  public boolean register(RegisterRequest payload) {
-    return false;
+  public User register(RegisterRequest payload) {
+    User user = userDao.register(payload);
+
+    if (user == null) {
+      throw new NoSuchElementException("Invalid login.");
+    }
+
+    return user;
   }
 }

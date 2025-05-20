@@ -1,4 +1,6 @@
 package communication.requests.user_requests;
 
-public record RegisterRequest(String username, String password) {
+import java.io.Serializable;
+
+public record RegisterRequest(String username, String password) implements Serializable {
 }

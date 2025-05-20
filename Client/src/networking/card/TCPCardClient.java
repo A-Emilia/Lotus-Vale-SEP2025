@@ -3,6 +3,7 @@ package networking.card;
 import communication.Request;
 import communication.RequestType;
 import communication.requests.card_requests.GetCardRequest;
+import communication.requests.collection_requests.GetCollectionRequest;
 import model.entities.card.Card;
 import networking.SocketService;
 
@@ -25,7 +26,24 @@ public class TCPCardClient implements CardClient {
       // Fuck you Java. This is not unchecked.
       return (ArrayList<Card>) res;
     }
+    return null;
+  }
 
+  @Override
+  public ArrayList<Card> getCollection(GetCollectionRequest collectionRequest) {
+    Request request = new Request(RequestType.COLLECTION, "get", collectionRequest);
+
+    Object inc = SocketService.sendRequest(request);
+
+    if (inc instanceof ArrayList<?> res) {
+      for (Object obj : res) {
+        if (!(obj instanceof Card)) {
+          throw new ClassCastException();
+        }
+      }
+      // Fuck you Java. This is not unchecked.
+      return (ArrayList<Card>) res;
+    }
     return null;
   }
 }

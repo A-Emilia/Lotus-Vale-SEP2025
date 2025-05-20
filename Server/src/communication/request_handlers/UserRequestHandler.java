@@ -14,7 +14,7 @@ public class UserRequestHandler implements RequestHandler {
   @Override
   public Object handle(String action, Object payload) {
 
-    return switch(action) {
+    return switch (action) {
       case "login" -> userService.login((LoginRequest) payload);
       case "register" -> userService.register((RegisterRequest) payload);
 
