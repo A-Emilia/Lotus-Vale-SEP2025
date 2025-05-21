@@ -57,10 +57,6 @@ public class UserMySQLDao implements UserDao {
           System.out.println(user.toString());
 
           return user;
-
-          //return new User.Builder(id)
-          //    .username(username)
-          //    .build();
         }
       }
     }

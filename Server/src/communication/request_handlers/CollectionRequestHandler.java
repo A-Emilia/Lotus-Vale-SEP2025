@@ -11,12 +11,11 @@ public class CollectionRequestHandler implements RequestHandler {
   }
 
   @Override
-  public Object handle(String action, Object payload) {
-    return switch (action) {
-      case "get" -> collectionService.getCollection((GetCollectionRequest) payload);
-      case "update" -> null;
+  public Object handle(Object payload) {
+    return switch (payload) {
+      case GetCollectionRequest req -> collectionService.getCollection(req);
 
-      default -> throw new IllegalStateException("Unexpected value: " + action);
+      default -> throw new IllegalStateException("Error");
     };
   }
 }

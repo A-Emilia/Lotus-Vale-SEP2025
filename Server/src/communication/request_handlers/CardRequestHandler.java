@@ -1,5 +1,6 @@
 package communication.request_handlers;
 
+import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;
 import communication.requests.card_requests.GetLotusRequest;
 import communication.services.card.CardService;
@@ -12,13 +13,14 @@ private final CardService cardService;
   }
 
   @Override
-  public Object handle(String action, Object payload) {
+  public Object handle(Object payload) {
 
-    return switch (action) {
-      case "get" -> cardService.getCard((GetCardRequest) payload);
-      case "lotus" ->  cardService.getLotus((GetLotusRequest) payload);
+    return switch (payload) {
+      case GetCardRequest req -> cardService.getCard(req);
+      case GetLotusRequest req ->  cardService.getLotus(req);
+      case AddCardRequest req -> cardService.addCard(req);
 
-      default -> throw new IllegalStateException("Unexpected value: " + action);
+      default -> throw new IllegalStateException("Error");
     };
   }
 }

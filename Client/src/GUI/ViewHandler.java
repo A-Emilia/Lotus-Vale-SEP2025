@@ -90,7 +90,7 @@ public class ViewHandler {
   }
 
   private static void showSearchResultView(ArrayList<Card> res) throws IOException {
-    initializeView("Search_Result_Page/Search_Result_Page.fxml", new SearchResultPageController(new SearchResultPageVM(res)));
+    initializeView("Search_Result_Page/Search_Result_Page.fxml", new SearchResultPageController(new SearchResultPageVM(res, new TCPCardClient())));
   }
 
   private static void showCollectionPageView() throws IOException {

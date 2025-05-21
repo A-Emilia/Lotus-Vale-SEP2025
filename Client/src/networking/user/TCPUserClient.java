@@ -11,7 +11,7 @@ import state.AppState;
 public class TCPUserClient implements UserClient {
   @Override
   public boolean login(LoginRequest loginRequest) {
-    Request request = new Request(RequestType.USER, "login", loginRequest);
+    Request request = new Request(RequestType.USER, loginRequest);
 
     Object inc = SocketService.sendRequest(request);
 
@@ -35,7 +35,7 @@ public class TCPUserClient implements UserClient {
 
   @Override
   public boolean register(RegisterRequest registerRequest) {
-    Request request = new Request(RequestType.USER, "register", registerRequest);
+    Request request = new Request(RequestType.USER, registerRequest);
 
     Object inc = SocketService.sendRequest(request);
 

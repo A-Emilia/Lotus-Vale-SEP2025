@@ -11,7 +11,7 @@ public class TCPLotusClient implements LotusClient {
 
   @Override
   public Card getLotus(GetLotusRequest lotusRequest) {
-    Request request = new Request(RequestType.LOTUS, "lotus", lotusRequest);
+    Request request = new Request(RequestType.LOTUS, lotusRequest);
     System.out.println("TCPLotusClient: " + request);
     return (Card) SocketService.sendRequest(request);
   }

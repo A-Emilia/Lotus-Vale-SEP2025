@@ -4,9 +4,7 @@ import GUI.Shared.ViewController;
 import GUI.ViewHandler;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
-import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -27,11 +25,14 @@ public class SearchResultPageController implements ViewController {
   public Button homeButton;
   public Button searchMenuButton;
   public Button collectionMenuButton;
+  public SplitMenuButton addButtonsMenu;
+  public MenuItem addToCollectionButton;
 
   public ImageView cardDisplay;
   public TableView<Card> resultTable;
   public TableColumn<Card, String> nameCol;
   public TableColumn<Card, String> setCol;
+
 
   public void initialize() {
     resultTable.setItems(vm.displayableCardsProperty());
@@ -63,5 +64,11 @@ public class SearchResultPageController implements ViewController {
 
   public void collectionMenuButtonPressed(ActionEvent actionEvent) {
     ViewHandler.showView(ViewHandler.ViewType.COLLECTION);
+  }
+
+  public void addToCollectionButtonPressed(ActionEvent actionEvent) {
+    ArrayList<Integer> selectedCardIds = new ArrayList<>();
+    selectedCardIds.add(resultTable.getSelectionModel().getSelectedItem().getId());
+    vm.addToCollection(selectedCardIds);
   }
 }

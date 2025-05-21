@@ -10,7 +10,7 @@ public class DeckRequestHandler implements RequestHandler {
   }
 
   @Override
-  public Object handle(String action, Object payload) {
+  public Object handle(Object payload) {
     return null;
   }
 }

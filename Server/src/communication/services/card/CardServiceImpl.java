@@ -1,5 +1,7 @@
 package communication.services.card;
 
+import communication.ResponseType;
+import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;
 import communication.requests.card_requests.GetLotusRequest;
 import model.entities.card.Card;
@@ -31,6 +33,12 @@ public class CardServiceImpl implements CardService {
     }
 
     return res;
+  }
+
+  @Override
+  public ResponseType addCard(AddCardRequest payload) {
+    cardDao.addCard(payload);
+    return ResponseType.OK;
   }
 
   @Override

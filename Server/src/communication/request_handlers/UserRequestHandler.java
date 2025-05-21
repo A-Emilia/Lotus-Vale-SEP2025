@@ -12,13 +12,13 @@ public class UserRequestHandler implements RequestHandler {
   }
 
   @Override
-  public Object handle(String action, Object payload) {
+  public Object handle(Object payload) {
 
-    return switch (action) {
-      case "login" -> userService.login((LoginRequest) payload);
-      case "register" -> userService.register((RegisterRequest) payload);
+    return switch (payload) {
+      case LoginRequest req -> userService.login(req);
+      case RegisterRequest req -> userService.register(req);
 
-      default -> throw new IllegalStateException("Unexpected value: " + action);
+      default -> throw new IllegalStateException("Error");
     };
   }
 }

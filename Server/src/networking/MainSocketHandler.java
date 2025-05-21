@@ -45,7 +45,7 @@ public class MainSocketHandler implements Runnable {
       case COLLECTION -> ServiceProvider.getCollectionRequestHandler();
     };
 
-    Object res = handler.handle(request.action(), request.payload());
+    Object res = handler.handle(request.payload());
     Response response = new Response(ResponseType.OK, res);
     out.writeObject(response);
   }

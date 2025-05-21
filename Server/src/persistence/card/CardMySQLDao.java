@@ -1,8 +1,10 @@
 package persistence.card;
 
+import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;
 import model.entities.card.Card;
 import networking.DatabaseConnector;
+import utilities.querying.card.MySQLAddCardQuery;
 import utilities.querying.card.MySQLCardQuery;
 
 import java.sql.Connection;
@@ -25,6 +27,17 @@ public class CardMySQLDao implements CardDao {
 
       return Card.sqlToCards(rs);
     } catch (SQLException e) {
+      throw new RuntimeException(e);
+    }
+  }
+
+  @Override
+  public void addCard(AddCardRequest req) {
+    try (Connection con = DatabaseConnector.getConnection();
+    PreparedStatement addCardQuery = MySQLAddCardQuery.build(con, req)) {
+      addCardQuery.executeBatch();
+    }
+    catch (Exception e) {
       throw new RuntimeException(e);
     }
   }
