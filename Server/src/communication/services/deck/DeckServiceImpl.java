@@ -3,8 +3,11 @@ package communication.services.deck;
 import communication.ResponseType;
 import communication.requests.deck_requests.CreateDeckRequest;
 import communication.requests.deck_requests.DeleteDeckRequest;
-import communication.requests.deck_requests.GetDeckRequest;
+import communication.requests.deck_requests.GetDecksRequest;
+import model.entities.deck.Deck;
 import persistence.deck.DeckDao;
+
+import java.util.ArrayList;
 
 public class DeckServiceImpl implements DeckService {
   private final DeckDao deckDao;
@@ -14,19 +17,17 @@ public class DeckServiceImpl implements DeckService {
   }
 
   @Override
-  public Object getDeck(GetDeckRequest req) {
-    return null;
+  public ArrayList<Deck> getDeck(GetDecksRequest req) {
+    return deckDao.getDecks(req);
   }
 
   @Override
-  public Object createDeck(CreateDeckRequest req)
-  {
-    return null;
+  public ResponseType createDeck(CreateDeckRequest req) {
+    return deckDao.createDeck(req);
   }
 
   @Override
-  public ResponseType deleteDeck(DeleteDeckRequest req)
-  {
-    return null;
+  public ResponseType deleteDeck(DeleteDeckRequest req) {
+    return deckDao.deleteDeck(req);
   }
 }

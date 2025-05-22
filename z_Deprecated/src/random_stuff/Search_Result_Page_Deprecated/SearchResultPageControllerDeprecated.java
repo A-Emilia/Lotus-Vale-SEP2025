@@ -1,4 +1,4 @@
-package GUI.Search_Result_Page_Deprecated;
+package random_stuff.Search_Result_Page_Deprecated;
 
 import GUI.Shared.ViewController;
 import GUI.ViewHandler;

@@ -1,6 +1,5 @@
-package GUI.Prototyping;
+package random_stuff.Prototyping;
 
-import com.google.gson.Gson;
 import communication.requests.card_requests.GetCardRequest;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -12,12 +11,12 @@ import java.util.ArrayList;
 public class PrototypeVM {
   //private final LotusClient lotusClient;
   private final TCPCardClient cardClient;
-  private final Gson gson;
+  //private final Gson gson;
 
   public PrototypeVM(TCPCardClient cardClient) {
     this.cardClient = cardClient;
     //this.lotusClient = lotusClient;
-    this.gson = new Gson();
+    //this.gson = new Gson();
   }
 
   /*---------------------------------------*/

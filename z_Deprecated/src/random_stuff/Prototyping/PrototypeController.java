@@ -1,4 +1,4 @@
-package GUI.Prototyping;
+package random_stuff.Prototyping;
 
 import GUI.Shared.ViewController;
 import GUI.ViewHandler;
@@ -7,7 +7,6 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import javafx.scene.layout.VBox;
 
 public class PrototypeController implements ViewController {
   private final PrototypeVM vm;
@@ -42,7 +41,7 @@ public class PrototypeController implements ViewController {
   }
 
   public void prototypeButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.PROTOTYPE);
+    //ViewHandler.showView(ViewHandler.ViewType.PROTOTYPE);
   }
 
   public void registerButtonPressed(ActionEvent actionEvent) {

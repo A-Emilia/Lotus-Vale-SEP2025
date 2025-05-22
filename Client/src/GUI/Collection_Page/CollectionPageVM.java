@@ -16,7 +16,7 @@ public class CollectionPageVM {
 
   public CollectionPageVM(CardClient cardClient) {
     this.cardClient = cardClient;
-    ArrayList<Card> cardArrayList = cardClient.getCollection(new GetCollectionRequest(AppState.getLoggedInUser().getId(), "get"));
+    ArrayList<Card> cardArrayList = cardClient.getCollection(new GetCollectionRequest(AppState.getLoggedInUser().getId()));
     cards.addAll(cardArrayList);
   }
 
