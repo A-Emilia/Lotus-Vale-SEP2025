@@ -1,10 +1,12 @@
 package communication.request_handlers;
 
+import communication.requests.collection_requests.CreateSubCollectionRequest;
+import communication.requests.collection_requests.DeleteSubCollectionRequest;
 import communication.requests.collection_requests.GetCollectionRequest;
 import communication.services.collection.CollectionService;
 
 public class CollectionRequestHandler implements RequestHandler {
-  private CollectionService collectionService;
+  private final CollectionService collectionService;
 
   public CollectionRequestHandler(CollectionService collectionService) {
     this.collectionService = collectionService;
@@ -14,6 +16,9 @@ public class CollectionRequestHandler implements RequestHandler {
   public Object handle(Object payload) {
     return switch (payload) {
       case GetCollectionRequest req -> collectionService.getCollection(req);
+      case CreateSubCollectionRequest req -> collectionService.createSubCollection(req);
+      case DeleteSubCollectionRequest req -> collectionService.deleteSubCollection(req);
+
 
       default -> throw new IllegalStateException("Error");
     };

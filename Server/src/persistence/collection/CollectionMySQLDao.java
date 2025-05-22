@@ -1,9 +1,12 @@
 package persistence.collection;
 
+import communication.ResponseType;
+import communication.requests.collection_requests.CreateSubCollectionRequest;
+import communication.requests.collection_requests.DeleteSubCollectionRequest;
 import communication.requests.collection_requests.GetCollectionRequest;
 import model.entities.card.Card;
 import networking.DatabaseConnector;
-import utilities.querying.collection.MySQLCollectionQuery;
+import utilities.querying.collection.MySQLGetCollection;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -17,7 +20,7 @@ public class CollectionMySQLDao implements CollectionDao {
   @Override
   public ArrayList<Card> getCollection(GetCollectionRequest payload) {
 
-    MySQLCollectionQuery getQuery = MySQLCollectionQuery.getCollection(payload);
+    MySQLGetCollection getQuery = MySQLGetCollection.getCollection(payload);
 
     try (Connection con = DatabaseConnector.getConnection()) {
       PreparedStatement sqlStatement = getQuery.build(con);
@@ -29,5 +32,15 @@ public class CollectionMySQLDao implements CollectionDao {
     catch (SQLException e) {
       throw new RuntimeException(e);
     }
+  }
+
+  @Override
+  public Object createSubCollection(CreateSubCollectionRequest payload) {
+    return null;
+  }
+
+  @Override
+  public ResponseType deleteSubCollection(DeleteSubCollectionRequest payload) {
+    return null;
   }
 }

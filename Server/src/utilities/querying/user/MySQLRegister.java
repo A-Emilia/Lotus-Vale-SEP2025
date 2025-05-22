@@ -6,10 +6,8 @@ import utilities.querying.QueryBuilder;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class MySQLRegisterQuery implements QueryBuilder {
+public class MySQLRegister implements QueryBuilder {
   private static final String sql =
           "INSERT INTO user (username, password)"     +
           "SELECT ?, ? FROM DUAL WHERE NOT EXISTS ("  +

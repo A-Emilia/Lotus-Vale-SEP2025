@@ -5,7 +5,7 @@ import communication.requests.user_requests.RegisterRequest;
 import communication.services.user.UserService;
 
 public class UserRequestHandler implements RequestHandler {
-  private UserService userService;
+  private final UserService userService;
 
   public UserRequestHandler(UserService userService) {
     this.userService = userService;

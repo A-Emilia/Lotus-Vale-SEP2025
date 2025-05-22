@@ -9,19 +9,19 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLCardQuery implements QueryBuilder {
+public class MySQLGetCard implements QueryBuilder {
   private final StringBuilder sql = new StringBuilder("SELECT c.*, ci.multiverseId FROM cards c, cardidentifiers ci WHERE 1=1");
   private final List<Object> cardParam = new ArrayList<>();
 
-  public static MySQLCardQuery getRequest(GetCardRequest request) {
-    return new MySQLCardQuery()
+  public static MySQLGetCard getRequest(GetCardRequest request) {
+    return new MySQLGetCard()
         .filterByName(request.name())
         .filterBySetCode(request.setCode())
         .filterByTextContains(request.textContains())
         .getMultiverseId();
   }
 
-  public MySQLCardQuery filterByName(String name) {
+  public MySQLGetCard filterByName(String name) {
     if (name != null && !name.isEmpty()) {
       sql.append(" AND c.name LIKE ?");
       cardParam.add("%" + name + "%");
@@ -29,7 +29,7 @@ public class MySQLCardQuery implements QueryBuilder {
     return this;
   }
 
-  public MySQLCardQuery filterBySetCode(String setCode) {
+  public MySQLGetCard filterBySetCode(String setCode) {
     if (setCode != null && !setCode.isEmpty()) {
       sql.append(" AND c.setCode = ?");
       cardParam.add(setCode);
@@ -37,7 +37,7 @@ public class MySQLCardQuery implements QueryBuilder {
     return this;
   }
 
-  public MySQLCardQuery filterByTextContains(String text) {
+  public MySQLGetCard filterByTextContains(String text) {
     if (text != null && !text.isEmpty()) {
       sql.append(" AND c.text LIKE ?");
       cardParam.add("%" + text + "%");
@@ -45,7 +45,7 @@ public class MySQLCardQuery implements QueryBuilder {
     return this;
   }
 
-  public MySQLCardQuery getMultiverseId() {
+  public MySQLGetCard getMultiverseId() {
     sql.append(" AND c.id = ci.id ");
     return this;
   }

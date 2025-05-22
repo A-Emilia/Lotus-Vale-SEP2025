@@ -9,7 +9,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLCollectionQuery implements QueryBuilder {
+public class MySQLGetCollection implements QueryBuilder {
   private final StringBuilder sql = new StringBuilder(
             "SELECT c.*, ci.multiverseId FROM user_cards uc " +
             "JOIN cards c ON uc.card_id = c.id " +
@@ -18,12 +18,12 @@ public class MySQLCollectionQuery implements QueryBuilder {
   );
   private final List<Object> collParam = new ArrayList<>();
 
-  public static MySQLCollectionQuery getCollection(GetCollectionRequest request) {
-    return new MySQLCollectionQuery()
+  public static MySQLGetCollection getCollection(GetCollectionRequest request) {
+    return new MySQLGetCollection()
         .filterByUserId(request.userId());
   }
 
-  public MySQLCollectionQuery filterByUserId(int userId) {
+  public MySQLGetCollection filterByUserId(int userId) {
     sql.append(" AND uc.user_id = ?");
     collParam.add(userId);
     return this;

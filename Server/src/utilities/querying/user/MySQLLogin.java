@@ -9,17 +9,17 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MySQLUserQuery implements QueryBuilder {
+public class MySQLLogin implements QueryBuilder {
   private final StringBuilder sql = new StringBuilder("SELECT u.* FROM user u WHERE 1=1");
   private final List<Object> userParam = new ArrayList<>();
 
-  public static MySQLUserQuery getUserLogin(LoginRequest request) {
-    return new MySQLUserQuery()
+  public static MySQLLogin getUserLogin(LoginRequest request) {
+    return new MySQLLogin()
         .filterByUsername(request.username())
         .filterByPassword(request.password());
   }
 
-  public MySQLUserQuery filterByUsername(String username) {
+  public MySQLLogin filterByUsername(String username) {
     if (username != null && !username.isEmpty()) {
       sql.append(" AND u.username = ?");
       userParam.add(username);
@@ -27,7 +27,7 @@ public class MySQLUserQuery implements QueryBuilder {
     return this;
   }
 
-  public MySQLUserQuery filterByPassword(String password) {
+  public MySQLLogin filterByPassword(String password) {
     if (password != null && !password.isEmpty()) {
       sql.append(" AND u.password = ?");
       userParam.add(password);

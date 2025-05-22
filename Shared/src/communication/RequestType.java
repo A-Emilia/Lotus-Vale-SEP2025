@@ -5,7 +5,6 @@ public enum RequestType {
   USER,
   DECK,
   COLLECTION,
-  LOTUS,
 
   // TODO All future endpoints
 }

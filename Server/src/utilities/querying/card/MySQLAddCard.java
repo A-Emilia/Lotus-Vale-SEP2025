@@ -7,7 +7,7 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
-public class MySQLAddCardQuery implements QueryBuilder {
+public class MySQLAddCard implements QueryBuilder {
   private static final String sql = "INSERT IGNORE INTO user_cards (user_id, card_id) VALUES (?, ?)";
 
   public static PreparedStatement build(Connection con, AddCardRequest request) throws SQLException {

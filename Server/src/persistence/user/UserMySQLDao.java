@@ -4,8 +4,8 @@ import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;
 import model.entities.user.User;
 import networking.DatabaseConnector;
-import utilities.querying.user.MySQLRegisterQuery;
-import utilities.querying.user.MySQLUserQuery;
+import utilities.querying.user.MySQLRegister;
+import utilities.querying.user.MySQLLogin;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -19,7 +19,7 @@ public class UserMySQLDao implements UserDao {
     // the MySQLUserQuery class. Also run appropriate checks.
     // Purely testing as of right now.
 
-    MySQLUserQuery loginQuery = MySQLUserQuery.getUserLogin(payload);
+    MySQLLogin loginQuery = MySQLLogin.getUserLogin(payload);
 
     try (Connection con = DatabaseConnector.getConnection();
         PreparedStatement sqlStatement = loginQuery.build(con)) {
@@ -37,7 +37,7 @@ public class UserMySQLDao implements UserDao {
   public User register(RegisterRequest payload) {
 
     try (Connection con = DatabaseConnector.getConnection();
-        PreparedStatement registerQuery = MySQLRegisterQuery.build(con, payload)) {
+        PreparedStatement registerQuery = MySQLRegister.build(con, payload)) {
 
 
       int affectedRows = registerQuery.executeUpdate();
