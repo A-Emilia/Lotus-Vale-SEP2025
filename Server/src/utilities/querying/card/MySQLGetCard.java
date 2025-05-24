@@ -10,15 +10,31 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLGetCard implements QueryBuilder {
-  private final StringBuilder sql = new StringBuilder("SELECT c.*, ci.multiverseId FROM cards c, cardidentifiers ci WHERE 1=1");
+  private final StringBuilder sql = new StringBuilder(
+      "SELECT c.*, ci.multiverseId" +
+          " FROM cards c" +
+          " JOIN cardidentifiers ci ON c.id = ci.id" +
+          " WHERE 1=1"
+  );
   private final List<Object> cardParam = new ArrayList<>();
 
   public static MySQLGetCard getRequest(GetCardRequest request) {
-    return new MySQLGetCard()
+    MySQLGetCard query = new MySQLGetCard()
         .filterByName(request.name())
         .filterBySetCode(request.setCode())
         .filterByTextContains(request.textContains())
         .getMultiverseId();
+
+    // If it is null, it is just for searching across all cards.
+    if (request.target() != null) {
+      switch (request.target().targetType()) {
+        case MAIN_COLLECTION -> query.filterByUserCollection(request.target().userId());
+        case SUB_COLLECTION -> query.filterBySubCollection(null);
+        case DECK -> query.filterByDeck(request.target().targetId());
+      }
+    }
+
+    return query;
   }
 
   public MySQLGetCard filterByName(String name) {
@@ -50,12 +66,34 @@ public class MySQLGetCard implements QueryBuilder {
     return this;
   }
 
+  public void filterByDeck(Integer deckId) {
+    if (deckId != null) {
+      sql.append(" AND c.id IN (SELECT card_id FROM card_in_deck WHERE deck_id = ?)");
+      cardParam.add(deckId);
+    }
+  }
+
+  public void filterByUserCollection(Integer userId) {
+    if (userId != null) {
+      sql.append(" AND c.id IN (SELECT card_id FROM user_cards WHERE user_id = ?)");
+      cardParam.add(userId);
+    }
+  }
+
+  public void filterBySubCollection(Integer subCollectionId) {
+    if (subCollectionId != null) {
+      // TODO Implement subcollection later.
+      //sql.append(" AND c.id IN (SELECT card_id FROM sub_collection WHERE sub_collection_id = ?)");
+      //cardParam.add(subCollectionId);
+    }
+  }
+
   // Add connection as input to the build method?
   public PreparedStatement build(Connection con) throws SQLException {
     PreparedStatement res = con.prepareStatement(sql.toString());
 
     for (int i = 0; i < cardParam.size(); i++) {
-      res.setString(i+1, (String) cardParam.get(i));
+      res.setObject(i+1, cardParam.get(i));
     }
 
     return res;

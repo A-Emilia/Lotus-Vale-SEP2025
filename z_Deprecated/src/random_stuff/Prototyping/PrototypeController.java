@@ -1,6 +1,7 @@
 package random_stuff.Prototyping;
 
 import GUI.Shared.ViewController;
+import GUI.Shared.ViewType;
 import GUI.ViewHandler;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
@@ -37,7 +38,7 @@ public class PrototypeController implements ViewController {
   }
 
   public void loginButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.LOGIN);
+    ViewHandler.showView(ViewType.LOGIN);
   }
 
   public void prototypeButtonPressed(ActionEvent actionEvent) {
@@ -48,10 +49,10 @@ public class PrototypeController implements ViewController {
   }
 
   public void homeButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.MAIN);
+    ViewHandler.showView(ViewType.MAIN);
   }
 
   public void searchMenuButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.SEARCH);
+    ViewHandler.showView(ViewType.SEARCH);
   }
 }

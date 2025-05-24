@@ -1,7 +1,7 @@
 package communication.services.deck;
 
 import communication.ResponseType;
-import communication.requests.deck_requests.CreateDeckRequest;
+import communication.requests.deck_requests.create_deck.CreateStandardDeckRequest;
 import communication.requests.deck_requests.DeleteDeckRequest;
 import communication.requests.deck_requests.GetDecksRequest;
 import model.entities.deck.Deck;
@@ -22,7 +22,7 @@ public class DeckServiceImpl implements DeckService {
   }
 
   @Override
-  public ResponseType createDeck(CreateDeckRequest req) {
+  public ResponseType createDeck(CreateStandardDeckRequest req) {
     return deckDao.createDeck(req);
   }
 

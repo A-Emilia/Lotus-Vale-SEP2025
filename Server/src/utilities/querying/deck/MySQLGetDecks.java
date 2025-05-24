@@ -1,6 +1,7 @@
 package utilities.querying.deck;
 
 import communication.requests.deck_requests.GetDecksRequest;
+import communication.requests.deck_requests.target.DeckTarget;
 import utilities.querying.QueryBuilder;
 
 import java.sql.Connection;
@@ -10,6 +11,29 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLGetDecks implements QueryBuilder {
+
+  public static MySQLGetDecks get(GetDecksRequest request) {
+    return new MySQLGetDecks()
+        .prepareQuery(request.targetType())
+        .filterByUser(request.userId());
+  }
+
+  public MySQLGetDecks prepareQuery(DeckTarget target) {
+    switch (target.targetType()) {
+      case PERSONAL -> {}
+      case STANDARD -> this.filterByFormat("standard");
+      case COMMANDER -> this.filterByFormat("commander");
+    }
+
+    return this;
+  }
+
+  private MySQLGetDecks filterByFormat(String format) {
+    sql.append(" AND d.format = ?");
+    deckParam.add(format);
+    return this;
+  }
+
   private final StringBuilder sql = new StringBuilder(
           "SELECT d.*, u.username FROM deck d " +
           "INNER JOIN user u ON d.owner_id = u.id " +
@@ -17,13 +41,8 @@ public class MySQLGetDecks implements QueryBuilder {
   );
   private final List<Object> deckParam = new ArrayList<>();
 
-  public static MySQLGetDecks get(GetDecksRequest request) {
-    return new MySQLGetDecks()
-        .filterByCommander()
-        .filterByUser(request.userId());
-  }
-
   public MySQLGetDecks filterByCommander() {
+    // TODO
     return this;
   }
 

@@ -1,6 +1,5 @@
 package utilities.querying.collection;
 
-import communication.requests.collection_requests.GetCollectionRequest;
 import utilities.querying.QueryBuilder;
 
 import java.sql.Connection;
@@ -17,11 +16,6 @@ public class MySQLGetCollection implements QueryBuilder {
             "WHERE 1=1"
   );
   private final List<Object> collParam = new ArrayList<>();
-
-  public static MySQLGetCollection getCollection(GetCollectionRequest request) {
-    return new MySQLGetCollection()
-        .filterByUserId(request.userId());
-  }
 
   public MySQLGetCollection filterByUserId(int userId) {
     sql.append(" AND uc.user_id = ?");

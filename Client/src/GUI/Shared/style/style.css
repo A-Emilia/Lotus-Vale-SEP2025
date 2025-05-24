@@ -1,0 +1,37 @@
+#anchor_pane {
+  -fx-background-image: url("Black_Lotus.jpg");
+  -fx-background-repeat: no-repeat;
+  -fx-background-size: 100%;
+  -fx-background-color: linear-gradient(to bottom, #100c0c 0%, #3b1b35 100%);
+}
+
+#tool_bar {
+  -fx-background-color: #100c0c;
+}
+
+#tool_bar_button {
+-fx-background-color: #100c0c;
+}
+
+#search_bar {
+  -fx-alignment: center;
+}
+
+.overlay_box {
+  -fx-background-color: rgba(0, 0, 0, 0.8);
+}
+
+#login_box {
+  -fx-background-color: rgba(0, 0, 0, 0.7);
+  -fx-background-radius: 2.5%;
+}
+
+#prototype_box {
+  -fx-background-color: rgba(0, 0, 0, 0.7);
+  -fx-background-radius: 2.5%;
+}
+
+#search_page_label {
+  -fx-background-color: rgba(32, 32, 32, 0.7);
+  -fx-background-radius: 2.5%;
+}

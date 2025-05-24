@@ -1,6 +1,7 @@
 package GUI.Search_Result_Page;
 
 import GUI.Shared.ViewController;
+import GUI.Shared.ViewType;
 import GUI.ViewHandler;
 import javafx.beans.Observable;
 import javafx.event.ActionEvent;
@@ -24,9 +25,11 @@ public class SearchResultPageController implements ViewController {
   public Button loginButton;
   public Button homeButton;
   public Button searchMenuButton;
-  public Button collectionMenuButton;
   public SplitMenuButton addButtonsMenu;
   public MenuItem addToCollectionButton;
+  public Button myCardsMenuButton;
+  public Button collectionsMenuButton;
+  public Button decksMenuButton;
 
   public ImageView cardDisplay;
   public TableView<Card> resultTable;
@@ -42,6 +45,14 @@ public class SearchResultPageController implements ViewController {
 
     resultTable.getSelectionModel().selectedItemProperty().addListener(this::cardToDisplay);
     resultTable.itemsProperty().addListener(this::cardToDisplay);
+
+    /*
+     Initializing things I am not talented enough at making persist across multiple views.
+     */
+    myCardsMenuButton.disableProperty().bind(vm.loggedInProperty().not());
+    collectionsMenuButton.disableProperty().bind(vm.loggedInProperty().not());
+    loginButton.textProperty().bind(vm.usernameProperty());
+    loginButton.disableProperty().bind(vm.loggedInProperty());
   }
 
   public void cardToDisplay(Observable observable) {
@@ -51,19 +62,27 @@ public class SearchResultPageController implements ViewController {
   }
 
   public void loginButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.LOGIN);
+    ViewHandler.showView(ViewType.LOGIN);
   }
 
   public void homeButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.MAIN);
+    ViewHandler.showView(ViewType.MAIN);
   }
 
   public void searchMenuButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.SEARCH);
+    ViewHandler.showView(ViewType.SEARCH);
   }
 
-  public void collectionMenuButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showView(ViewHandler.ViewType.COLLECTION);
+  public void myCardsMenuButtonPressed(ActionEvent actionEvent) {
+    ViewHandler.showView(ViewType.MY_CARDS);
+  }
+
+  public void collectionsMenuButtonPressed(ActionEvent actionEvent) {
+    ViewHandler.showView(ViewType.COLLECTIONS);
+  }
+
+  public void decksMenuButtonPressed(ActionEvent actionEvent) {
+    ViewHandler.showView(ViewType.DECKS);
   }
 
   public void addToCollectionButtonPressed(ActionEvent actionEvent) {

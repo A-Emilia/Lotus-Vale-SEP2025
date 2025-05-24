@@ -1,7 +1,11 @@
 package GUI;
 
-import GUI.Collection_Page.CollectionPageController;
-import GUI.Collection_Page.CollectionPageVM;
+import GUI.Collections_Page.CollectionsPageController;
+import GUI.Collections_Page.CollectionsPageVM;
+import GUI.Deck_Page.DeckPageController;
+import GUI.Deck_Page.DeckPageVM;
+import GUI.My_Cards_Page.MyCardsPageController;
+import GUI.My_Cards_Page.MyCardsPageVM;
 import GUI.Login_Page.LoginPageController;
 import GUI.Login_Page.LoginPageVM;
 import GUI.Main_Page.MainPageController;
@@ -11,6 +15,8 @@ import GUI.Search_Page.SearchPageVM;
 import GUI.Search_Result_Page.SearchResultPageController;
 import GUI.Search_Result_Page.SearchResultPageVM;
 import GUI.Shared.ViewController;
+import GUI.Shared.ViewType;
+import GUI.Shared.ViewTypeWithResource;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
@@ -22,24 +28,12 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 public class ViewHandler {
-
-  public enum ViewType {
-    MAIN,
-    LOGIN,
-    SEARCH,
-    COLLECTION,
-  }
-
-  public enum ViewTypeWithResource {
-    SEARCH_RESULT,
-  }
-
   private static Stage stage;
 
   public static void start(Stage s) {
     stage = s;
-    stage.setWidth(1280);
-    stage.setHeight(720);
+    stage.setWidth(1920);
+    stage.setHeight(1080);
     showView(ViewType.MAIN);
     stage.show();
   }
@@ -50,7 +44,9 @@ public class ViewHandler {
         case MAIN -> showMainView();
         case LOGIN -> showLoginView();
         case SEARCH -> showSearchPageView();
-        case COLLECTION -> showCollectionPageView();
+        case MY_CARDS -> showMyCardsPageView();
+        case COLLECTIONS -> showCollectionsPageView();
+        case DECKS -> showDecksPageView();
       }
     } catch(Exception e) {
       e.printStackTrace();
@@ -93,7 +89,15 @@ public class ViewHandler {
     initializeView("Search_Result_Page/Search_Result_Page.fxml", new SearchResultPageController(new SearchResultPageVM(res, new TCPCardClient())));
   }
 
-  private static void showCollectionPageView() throws IOException {
-    initializeView("Collection_Page/Collection_Page.fxml", new CollectionPageController(new CollectionPageVM(new TCPCardClient())));
+  private static void showMyCardsPageView() throws IOException {
+    initializeView("My_Cards_Page/My_Cards_Page.fxml", new MyCardsPageController(new MyCardsPageVM(new TCPCardClient())));
+  }
+
+  private static void showDecksPageView() throws IOException {
+    initializeView("Deck_Page/Deck_Page.fxml", new DeckPageController(new DeckPageVM()));
+  }
+
+  private static void showCollectionsPageView() throws IOException {
+    initializeView("Collections_Page/Collections_Page.fxml", new CollectionsPageController(new CollectionsPageVM()));
   }
 }

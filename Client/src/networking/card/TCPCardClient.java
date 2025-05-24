@@ -4,7 +4,6 @@ import communication.Request;
 import communication.RequestType;
 import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;
-import communication.requests.collection_requests.GetCollectionRequest;
 import model.entities.card.Card;
 import networking.SocketService;
 
@@ -31,8 +30,8 @@ public class TCPCardClient implements CardClient {
   }
 
   @Override
-  public ArrayList<Card> getCollection(GetCollectionRequest collectionRequest) {
-    Request request = new Request(RequestType.COLLECTION, collectionRequest);
+  public ArrayList<Card> getCollection(GetCardRequest collectionRequest) {
+    Request request = new Request(RequestType.CARD, collectionRequest);
 
     Object inc = SocketService.sendRequest(request);
 

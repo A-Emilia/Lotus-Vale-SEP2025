@@ -1,6 +1,7 @@
 package utilities.querying.card;
 
 import communication.requests.card_requests.RemoveCardRequest;
+import communication.requests.card_requests.target.CollectionTarget;
 import utilities.querying.QueryBuilder;
 
 import java.sql.Connection;
@@ -15,25 +16,30 @@ public class MySQLRemoveCard implements QueryBuilder {
 
   public static MySQLRemoveCard remove(RemoveCardRequest request) {
     return new MySQLRemoveCard()
-        .filterByCollection(request.target())
-        .filterByUserId(request.userId())
+        .filterByCollection(request.target(), request.userId())
         .filterByCardIds(request.cardIds());
   }
 
   // TODO Add target logic later
-  public MySQLRemoveCard filterByCollection(String target) {
-    if (target != null && !target.isEmpty()) {
-      sql.append("DELETE FROM ").append("user_cards").append(" WHERE user_id = ?");
-      return this;
+  public MySQLRemoveCard filterByCollection(CollectionTarget target, int userId) {
+
+    switch (target.targetType()) {
+      case MAIN_COLLECTION -> {
+        sql.append("DELETE FROM ").append("user_cards").append(" WHERE user_id = ?");
+        cardParam.add(userId);
+      }
+      case SUB_COLLECTION -> {
+        // TODO
+      }
+      case DECK -> {
+        sql.append("DELETE FROM ").append("card_in_deck").append(" WHERE deck_id = ?");
+        cardParam.add(target.targetId());
+      }
     }
-    sql.append("DELETE FROM ").append("user_cards").append(" WHERE user_id = ?");
+
     return this;
   }
 
-  public MySQLRemoveCard filterByUserId(int userId) {
-    cardParam.add(userId);
-    return this;
-  }
 
   public MySQLRemoveCard filterByCardIds(List<Integer> cardIds) {
     if (cardIds != null && !cardIds.isEmpty()) {

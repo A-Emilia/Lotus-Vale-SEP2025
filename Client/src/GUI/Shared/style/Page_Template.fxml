@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.Main_Page.MainPageController">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <!-- Toolbar row -->
+        <RowConstraints percentHeight="5.0" />
+
+        <!-- 20 equally sized layout rows -->
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+        <RowConstraints percentHeight="4.75" />
+    </rowConstraints>
+   <children>
+      <Pane prefHeight="1080.0" prefWidth="1920.0" styleClass="overlay_box" GridPane.columnSpan="20" GridPane.rowSpan="21" />
+      <GridPane id="tool_bar" opacity="0.8" GridPane.columnSpan="20">
+        <columnConstraints>
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+            <ColumnConstraints percentWidth="5.0" />
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints percentHeight="25.0" />
+            <RowConstraints percentHeight="25.0" />
+            <RowConstraints percentHeight="25.0" />
+            <RowConstraints percentHeight="25.0" />
+        </rowConstraints>
+         <children>
+            <Button fx:id="registerButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerButtonPressed" text="Register" textFill="WHITE" GridPane.columnIndex="18" GridPane.rowSpan="4" />
+            <Button fx:id="homeButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#homeButtonPressed" text="Home" textFill="WHITE" GridPane.rowSpan="4" />
+            <Button fx:id="loginButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginButtonPressed" text="Login" textFill="WHITE" GridPane.columnIndex="19" GridPane.rowSpan="4" />
+            <Button fx:id="searchMenuButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchMenuButtonPressed" text="Search" textFill="WHITE" GridPane.columnIndex="1" GridPane.rowSpan="4" />
+         </children>
+      </GridPane>
+   </children>
+</GridPane>

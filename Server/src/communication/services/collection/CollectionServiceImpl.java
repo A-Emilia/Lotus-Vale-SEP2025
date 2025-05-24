@@ -3,7 +3,6 @@ package communication.services.collection;
 import communication.ResponseType;
 import communication.requests.collection_requests.CreateSubCollectionRequest;
 import communication.requests.collection_requests.DeleteSubCollectionRequest;
-import communication.requests.collection_requests.GetCollectionRequest;
 import model.entities.card.Card;
 import persistence.collection.CollectionDao;
 
@@ -15,17 +14,6 @@ public class CollectionServiceImpl implements CollectionService {
 
   public CollectionServiceImpl(CollectionDao collectionDao) throws NoSuchElementException {
     this.collectionDao = collectionDao;
-  }
-
-  @Override
-  public ArrayList<Card> getCollection(GetCollectionRequest payload) {
-    ArrayList<Card> res = collectionDao.getCollection(payload);
-
-    if (res.isEmpty()) {
-      throw new NoSuchElementException("No cards found.");
-    }
-
-    return res;
   }
 
   @Override
