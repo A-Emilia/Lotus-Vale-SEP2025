@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
+<?import javafx.scene.text.Font?>
 
 <GridPane id="anchor_pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="1080.0" prefWidth="1920.0" stylesheets="@../Shared/style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.My_Cards_Page.MyCardsPageController">
     <columnConstraints>
@@ -100,40 +101,34 @@
       </GridPane>
        <GridPane id="prototype_box" GridPane.columnIndex="4" GridPane.columnSpan="12" GridPane.rowIndex="2" GridPane.rowSpan="18">
            <columnConstraints>
-               <!-- Outer Edge, Index 0-->
+
+               <ColumnConstraints percentWidth="2.5" />
+               <ColumnConstraints percentWidth="2.5" />
+
+               <ColumnConstraints percentWidth="5.0" />
+               <ColumnConstraints percentWidth="5.0" />
+               <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
 
-               <!-- Card no. 1, Index 1 -->
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
-               <!-- Spacer -->
-               <ColumnConstraints percentWidth="3.33" />
+               <ColumnConstraints percentWidth="5.0" />
 
-               <!-- Card no. 2, Index 6 -->
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
-               <!-- Spacer -->
-               <ColumnConstraints percentWidth="3.33" />
+               <ColumnConstraints percentWidth="5.0" />
 
-               <!-- Card no. 3, Index 11 -->
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
                <ColumnConstraints percentWidth="5.0" />
-               <!-- Spacer -->
-               <ColumnConstraints percentWidth="3.33" />
 
-               <!-- Card no. 4, Index 16 -->
-               <ColumnConstraints percentWidth="5.0" />
-               <ColumnConstraints percentWidth="5.0" />
-               <ColumnConstraints percentWidth="5.0" />
-               <ColumnConstraints percentWidth="5.0" />
-               <!-- Outer Edge, Index 20 -->
-               <ColumnConstraints percentWidth="5.0" />
+               <ColumnConstraints percentWidth="2.5" />
+               <ColumnConstraints percentWidth="2.5" />
            </columnConstraints>
            <rowConstraints>
                <RowConstraints percentHeight="5.0" />
@@ -158,13 +153,38 @@
                <RowConstraints percentHeight="5.0" />
            </rowConstraints>
          <children>
-            <ImageView fx:id="cardDisplay" fitHeight="331.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="13" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="5" />
-            <TableView fx:id="collectionTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="1" GridPane.columnSpan="10" GridPane.rowIndex="2" GridPane.rowSpan="12">
+            <Button id="page_button" fx:id="editCardButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#editCardButtonPressed" text="Edit" textFill="WHITE" GridPane.columnIndex="15" GridPane.columnSpan="2" GridPane.rowIndex="11">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font></Button>
+            <ImageView fx:id="cardDisplay" fitHeight="331.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="15" GridPane.columnSpan="4" GridPane.rowIndex="4" GridPane.rowSpan="5" />
+            <TableView id="text_box" fx:id="collectionTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="2" GridPane.columnSpan="11" GridPane.rowIndex="2" GridPane.rowSpan="10">
               <columns>
                 <TableColumn fx:id="nameCol" prefWidth="272.0" text="Card Name" />
-                  <TableColumn fx:id="setCol" prefWidth="264.0" text="Set Code" />
+                  <TableColumn fx:id="setCol" prefWidth="360.0" text="Set Code" />
               </columns>
             </TableView>
+            <Button id="page_button" fx:id="removeCardButton" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#removeCardButtonPressed" text="Remove" textFill="WHITE" GridPane.columnIndex="17" GridPane.columnSpan="2" GridPane.rowIndex="11">
+               <font>
+                  <Font name="Yu Gothic UI Semibold" size="12.0" />
+               </font></Button>
+            <TableView id="text_box" GridPane.columnIndex="2" GridPane.columnSpan="11" GridPane.rowIndex="13" GridPane.rowSpan="6">
+              <columns>
+                <TableColumn prefWidth="365.0" text="C1" />
+                <TableColumn prefWidth="267.0" text="C2" />
+              </columns>
+            </TableView>
+            <GridPane id="text_box" fx:id="cardTextBox" GridPane.columnIndex="14" GridPane.columnSpan="6" GridPane.rowIndex="13" GridPane.rowSpan="6">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+            </GridPane>
          </children>
        </GridPane>
    </children>

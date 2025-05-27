@@ -19,6 +19,7 @@ import GUI.Shared.ViewType;
 import GUI.Shared.ViewTypeWithResource;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
 import model.entities.card.Card;
 import networking.card.TCPCardClient;
@@ -71,6 +72,8 @@ public class ViewHandler {
     Scene scene = new Scene(fxmlLoader.load());
     stage.setTitle("Lotus Vale");
     stage.setScene(scene);
+    Image image = new Image("GUI/Shared/style/Planeswalker_Icon.png");
+    stage.getIcons().add(image);
   }
 
   private static void showMainView() throws IOException {

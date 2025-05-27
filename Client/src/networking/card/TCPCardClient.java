@@ -4,6 +4,7 @@ import communication.Request;
 import communication.RequestType;
 import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;
+import communication.requests.card_requests.RemoveCardRequest;
 import model.entities.card.Card;
 import networking.SocketService;
 
@@ -50,6 +51,13 @@ public class TCPCardClient implements CardClient {
   @Override
   public void addCard(AddCardRequest addCardRequest) {
     Request request = new Request(RequestType.CARD, addCardRequest);
+
+    SocketService.sendRequest(request);
+  }
+
+  @Override
+  public void removeCard(RemoveCardRequest removeCardRequest) {
+    Request request = new Request(RequestType.CARD, removeCardRequest);
 
     SocketService.sendRequest(request);
   }

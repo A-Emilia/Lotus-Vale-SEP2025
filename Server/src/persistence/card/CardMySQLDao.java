@@ -51,12 +51,8 @@ public class CardMySQLDao implements CardDao {
   @Override
   public ResponseType removeCard(RemoveCardRequest payload) {
 
-    // Removing duplicate entries from the list.
-    ArrayList<Integer> cardsToRemove = (ArrayList<Integer>) payload.cardIds().stream().distinct().toList();
-    RemoveCardRequest request = new RemoveCardRequest(payload.userId(), cardsToRemove, payload.target());
-
     try (Connection con = DatabaseConnector.getConnection();
-    PreparedStatement removeQuery = MySQLRemoveCard.remove(request).build(con)) {
+    PreparedStatement removeQuery = MySQLRemoveCard.remove(payload).build(con)) {
       removeQuery.executeUpdate();
       return ResponseType.OK;
     }

@@ -13,6 +13,8 @@ import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import model.entities.card.Card;
 
+import java.util.ArrayList;
+
 public class MyCardsPageController implements ViewController {
   private final MyCardsPageVM vm;
 
@@ -29,6 +31,8 @@ public class MyCardsPageController implements ViewController {
   public Button myCardsMenuButton;
   public Button collectionsMenuButton;
   public Button decksMenuButton;
+  public Button removeCardButton;
+
 
   public void initialize() {
     collectionTable.setItems(vm.cardProperty());
@@ -76,6 +80,17 @@ public class MyCardsPageController implements ViewController {
 
   public void decksMenuButtonPressed(ActionEvent actionEvent) {
     ViewHandler.showView(ViewType.DECKS);
+  }
+
+  public void editCardButtonPressed(ActionEvent actionEvent)
+  {
+  }
+
+  public void removeCardButtonPressed(ActionEvent actionEvent) {
+    ArrayList<Integer> selectedCardIds = new ArrayList<>();
+    selectedCardIds.add(collectionTable.getSelectionModel().getSelectedItem().getId());
+    vm.removeFromCollection(selectedCardIds);
+    collectionTable.getSelectionModel().clearSelection();
   }
 }
 

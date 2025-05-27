@@ -8,7 +8,7 @@ import communication.requests.deck_requests.DeleteDeckRequest;
 import communication.requests.deck_requests.GetDecksRequest;
 import model.entities.deck.Deck;
 import networking.DatabaseConnector;
-import utilities.querying.collection.MySQLDeckFormats;
+import utilities.querying.deck.MySQLDeckFormats;
 import utilities.querying.deck.MySQLCreateDeck;
 import utilities.querying.deck.MySQLDeleteDeck;
 import utilities.querying.deck.MySQLGetDecks;
@@ -18,7 +18,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Optional;
 
 public class DeckMySQLDao implements DeckDao {

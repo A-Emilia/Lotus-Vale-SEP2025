@@ -11,6 +11,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MySQLGetDecks implements QueryBuilder {
+  private final StringBuilder sql = new StringBuilder(
+      "SELECT d.*, u.username FROM deck d " +
+          "INNER JOIN user u ON d.owner_id = u.id " +
+          "WHERE 1=1"
+  );
+  private final List<Object> deckParam = new ArrayList<>();
 
   public static MySQLGetDecks get(GetDecksRequest request) {
     return new MySQLGetDecks()
@@ -33,13 +39,6 @@ public class MySQLGetDecks implements QueryBuilder {
     deckParam.add(format);
     return this;
   }
-
-  private final StringBuilder sql = new StringBuilder(
-          "SELECT d.*, u.username FROM deck d " +
-          "INNER JOIN user u ON d.owner_id = u.id " +
-          "WHERE 1=1"
-  );
-  private final List<Object> deckParam = new ArrayList<>();
 
   public MySQLGetDecks filterByCommander() {
     // TODO

@@ -1,6 +1,8 @@
 package GUI.My_Cards_Page;
 
+import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;
+import communication.requests.card_requests.RemoveCardRequest;
 import communication.requests.card_requests.target.CollectionTarget;
 import communication.requests.card_requests.target.TargetType;
 import javafx.beans.property.*;
@@ -13,12 +15,12 @@ import state.AppState;
 
 import java.util.ArrayList;
 
-public class MyCardsPageVM
-{
+public class MyCardsPageVM {
   private final CardClient cardClient;
   private final ObservableList<Card> cards = FXCollections.observableArrayList();
   private final ReadOnlyBooleanWrapper loggedIn = new ReadOnlyBooleanWrapper();
-  private final ReadOnlyStringWrapper username = new ReadOnlyStringWrapper("Login");
+  private final ReadOnlyStringWrapper username = new ReadOnlyStringWrapper(
+      "Login");
 
   public MyCardsPageVM(CardClient cardClient) {
     this.cardClient = cardClient;
@@ -41,14 +43,25 @@ public class MyCardsPageVM
   }
 
   /*---------------------------------------*/
-  public ObservableList<Card> cardProperty() {return cards;}
+  public ObservableList<Card> cardProperty() {
+    return cards;
+  }
 
   public ReadOnlyBooleanProperty loggedInProperty() {
     return loggedIn.getReadOnlyProperty();
   }
 
-  public ReadOnlyStringWrapper usernameProperty() {
+  public ReadOnlyStringWrapper usernameProperty()
+  {
     return username;
   }
 
+  public void removeFromCollection(ArrayList<Integer> selectedCardIds) {
+    CollectionTarget target = new CollectionTarget(TargetType.MAIN_COLLECTION, null, null);
+    RemoveCardRequest removeCardRequest = new RemoveCardRequest(AppState.getLoggedInUser().getId(), selectedCardIds, target);
+
+    cardClient.removeCard(removeCardRequest);
+
+    cards.removeIf(card -> selectedCardIds.contains(card.getId()));
+  }
 }

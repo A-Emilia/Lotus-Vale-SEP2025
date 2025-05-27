@@ -1,4 +1,4 @@
-package utilities.querying.collection;
+package utilities.querying.deck;
 
 import communication.requests.deck_requests.create_deck.CreateCommanderDeckRequest;
 import utilities.querying.QueryBuilder;
