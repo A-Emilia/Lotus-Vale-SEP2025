@@ -1,0 +1,37 @@
+.content_box {
+  -fx-background-color: rgba(0, 0, 0, 0.7);
+  -fx-background-radius: 2.5%;
+}
+
+.toolbar {
+  -fx-background-color: #100c0c;
+  -fx-opacity: 0.8;
+}
+
+.toolbar .button {
+  -fx-background-color: #100c0c;
+  -fx-text-fill: #FFFFFF;
+}
+
+
+
+
+
+#text_box {
+  -fx-background-color: rgba(32, 32, 32, 0.7);
+  -fx-background-radius: 2.5%;
+}
+
+#page_button {
+-fx-background-color: rgba(32, 32, 32, 0.7);
+-fx-background-radius: 2.5%;
+}
+
+.overlay_box {
+  -fx-background-color: rgba(0, 0, 0, 0.8);
+}
+
+#search_page_label {
+  -fx-background-color: rgba(32, 32, 32, 0.7);
+  -fx-background-radius: 2.5%;
+}
