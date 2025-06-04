@@ -20,7 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
-import networking.user.TCPUserClient;
+import networking.clients.user.TCPUserClient;
 import state.AppState;
 
 import java.io.IOException;

@@ -1,4 +1,4 @@
-package networking.card;
+package networking.clients.card;
 
 import communication.requests.card_requests.AddCardRequest;
 import communication.requests.card_requests.GetCardRequest;

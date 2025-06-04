@@ -32,8 +32,7 @@ public class SocketService {
 
       switch (response.type()) {
         case OK -> {return response.payload();}
-        case ERROR_1 -> {return null;}
-        case ERROR_2 -> {}
+        case ERROR -> {return null;}
       }
 
     } catch (IOException | ClassNotFoundException e) {

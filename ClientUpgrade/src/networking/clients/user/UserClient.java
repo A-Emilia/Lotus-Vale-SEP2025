@@ -1,4 +1,4 @@
-package networking.user;
+package networking.clients.user;
 
 import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;

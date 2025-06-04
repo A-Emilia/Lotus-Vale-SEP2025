@@ -6,7 +6,7 @@ import javafx.beans.property.ReadOnlyBooleanWrapper;
 import javafx.beans.property.ReadOnlyStringWrapper;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
-import networking.user.UserClient;
+import networking.clients.user.UserClient;
 
 public class LoginVM {
   private final UserClient userClient;
@@ -25,17 +25,13 @@ public class LoginVM {
     return passwordFieldProperty;
   }
 
-  public void login() {
+  public boolean login() {
     LoginRequest loginRequest = new LoginRequest(usernameFieldProperty.get(), passwordFieldProperty.get());
-
-    // TODO More logic
-
-    userClient.login(loginRequest);
+    return userClient.login(loginRequest);
   }
 
-  public void register() {
+  public boolean register() {
     RegisterRequest registerRequest = new RegisterRequest(usernameFieldProperty.get(), passwordFieldProperty().get());
-
-    userClient.register(registerRequest);
+    return userClient.register(registerRequest);
   }
 }

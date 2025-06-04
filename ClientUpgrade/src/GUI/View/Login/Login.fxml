@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
@@ -8,16 +10,16 @@
 
 <GridPane alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="350.0" prefWidth="700.0" styleClass="content_box" stylesheets="@../../Shared/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.View.Login.LoginController">
      <columnConstraints>
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
-         <ColumnConstraints percentWidth="10" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
+         <ColumnConstraints percentWidth="10.0" />
      </columnConstraints>
      <rowConstraints>
          <RowConstraints percentHeight="5.0" />
@@ -34,8 +36,9 @@
      </rowConstraints>
      <children>
          <TextField fx:id="usernameField" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="4" />
-         <TextField fx:id="passwordField" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="5" />
+      <PasswordField fx:id="passwordField" GridPane.columnIndex="3" GridPane.columnSpan="4" GridPane.rowIndex="5" />
          <Button fx:id="loginConfirmButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#loginConfirmButtonPressed" text="Login" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="7" />
          <Button fx:id="registerButtonConfirm" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#registerConfirmButtonPressed" text="Register" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="8" />
+      <Label fx:id="errorLabel" alignment="CENTER" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" textFill="WHITE" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" />
      </children>
  </GridPane>

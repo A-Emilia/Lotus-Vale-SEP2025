@@ -15,7 +15,7 @@ import state.AppState;
 
 import java.util.ArrayList;
 
-public class MyCardsPageVM {
+public class  MyCardsPageVM {
   private final CardClient cardClient;
   private final ObservableList<Card> cards = FXCollections.observableArrayList();
   private final ReadOnlyBooleanWrapper loggedIn = new ReadOnlyBooleanWrapper();

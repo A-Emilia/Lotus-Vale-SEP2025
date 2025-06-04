@@ -1,12 +1,11 @@
-package networking.user;
+package networking.clients.user;
 
-import GUI.ViewHandler;
 import communication.Request;
 import communication.RequestType;
 import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;
 import model.entities.user.User;
-import networking.SocketService;
+import networking.SocketClient;
 import state.AppState;
 
 public class TCPUserClient implements UserClient {
@@ -14,8 +13,7 @@ public class TCPUserClient implements UserClient {
   public boolean login(LoginRequest loginRequest) {
     Request request = new Request(RequestType.USER, loginRequest);
 
-    Object inc = SocketService.sendRequest(request);
-
+    Object inc = SocketClient.sendRequest(request);
 
     switch (inc) {
       case User res -> {
@@ -23,12 +21,7 @@ public class TCPUserClient implements UserClient {
         return true;
       }
 
-      // TODO More sophisticated error handling.
-      case null -> {
-        return false;
-      }
-
-      default -> {
+      case null, default -> {
         return false;
       }
     }
@@ -38,7 +31,7 @@ public class TCPUserClient implements UserClient {
   public boolean register(RegisterRequest registerRequest) {
     Request request = new Request(RequestType.USER, registerRequest);
 
-    Object inc = SocketService.sendRequest(request);
+    Object inc = SocketClient.sendRequest(request);
 
     switch (inc) {
       case User res -> {
@@ -46,12 +39,7 @@ public class TCPUserClient implements UserClient {
         return true;
       }
 
-      // TODO More sophisticated error handling.
-      case null -> {
-        return false;
-      }
-
-      default -> {
+      case null, default -> {
         return false;
       }
     }
