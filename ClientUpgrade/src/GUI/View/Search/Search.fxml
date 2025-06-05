@@ -1,10 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.CheckBox?>
 <?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.FlowPane?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.Pane?>
 <?import javafx.scene.layout.RowConstraints?>
@@ -57,24 +59,32 @@
       <RowConstraints percentHeight="5.0" />
   </rowConstraints>
    <children>
-      <Pane styleClass="search_page" GridPane.columnIndex="3" GridPane.columnSpan="14" GridPane.rowIndex="2" GridPane.rowSpan="6" />
-      <TextField promptText="Any words in the name, e.g. &quot;Lotus&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="3" />
-      <TextField promptText="Any text, e.g. &quot;draw a card&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="4" />
-      <TextField promptText="Any mana symbols, e.g. &quot;{U}{B}&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="5" />
-      <TextField promptText="Any card subtype, e.g. &quot;Wizard&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="6" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Name" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="3" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Text" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="4" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Mana Cost" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="5" />
-      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Subtype" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="6" />
-      <ComboBox fx:id="colorSort" prefWidth="150.0" GridPane.columnIndex="10" GridPane.columnSpan="4" GridPane.rowIndex="11" />
-      <Pane styleClass="search_page" GridPane.columnIndex="3" GridPane.columnSpan="14" GridPane.rowIndex="9" GridPane.rowSpan="2" />
-      <CheckBox fx:id="whiteManaCheck" mnemonicParsing="false" text="White" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-      <CheckBox fx:id="redManaCheck" mnemonicParsing="false" text="Red" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-      <CheckBox fx:id="blueManaCheck" mnemonicParsing="false" text="Blue" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-      <CheckBox fx:id="blackManaCheck" mnemonicParsing="false" text="Black" GridPane.columnIndex="13" GridPane.columnSpan="2" GridPane.rowIndex="9" />
-      <CheckBox fx:id="colorlessManaCheck" mnemonicParsing="false" text="Colorless" GridPane.columnIndex="13" GridPane.columnSpan="3" GridPane.rowIndex="10" />
-      <CheckBox fx:id="greenManaCheck" mnemonicParsing="false" text="Green" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="10" />
-      <CheckBox fx:id="commanderCheckBox" mnemonicParsing="false" text="Commander" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="11" />
-      <Label text="Colors" GridPane.columnIndex="4" GridPane.rowIndex="9" />
+      <Pane styleClass="search_page" GridPane.columnIndex="3" GridPane.columnSpan="14" GridPane.rowIndex="2" GridPane.rowSpan="10" />
+      <TextField fx:id="nameSearchField" promptText="Any words in the name, e.g. &quot;Lotus&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="3" />
+      <TextField fx:id="textSearchField" promptText="Any text, e.g. &quot;draw a card&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="4" />
+      <TextField fx:id="setCodeField" promptText="Any set code, e.g. &quot;LEA&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="5" />
+      <TextField fx:id="subtypeField" promptText="Any card subtype, e.g. &quot;Wizard&quot;" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="6" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Name" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="3" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Text" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="4" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Set Code" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="5" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Subtype" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="6" />
+      <FlowPane fx:id="cardTypePane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="9" />
+      <FlowPane fx:id="cardSuperTypePane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="11" />
+      <ComboBox fx:id="colorSort" prefWidth="150.0" GridPane.columnIndex="10" GridPane.columnSpan="4" GridPane.rowIndex="15" />
+      <Pane styleClass="search_page" GridPane.columnIndex="3" GridPane.columnSpan="14" GridPane.rowIndex="13" GridPane.rowSpan="2" />
+      <CheckBox fx:id="whiteManaCheck" mnemonicParsing="false" text="White" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+      <CheckBox fx:id="redManaCheck" mnemonicParsing="false" text="Red" GridPane.columnIndex="7" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+      <CheckBox fx:id="blueManaCheck" mnemonicParsing="false" text="Blue" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+      <CheckBox fx:id="blackManaCheck" mnemonicParsing="false" text="Black" GridPane.columnIndex="13" GridPane.columnSpan="2" GridPane.rowIndex="13" />
+      <CheckBox fx:id="colorlessManaCheck" mnemonicParsing="false" text="Colorless" GridPane.columnIndex="13" GridPane.columnSpan="3" GridPane.rowIndex="14" />
+      <CheckBox fx:id="greenManaCheck" mnemonicParsing="false" text="Green" GridPane.columnIndex="10" GridPane.columnSpan="2" GridPane.rowIndex="14" />
+      <CheckBox fx:id="commanderCheckBox" mnemonicParsing="false" text="Commander" GridPane.columnIndex="6" GridPane.columnSpan="3" GridPane.rowIndex="15" />
+      <Label text="Colors" GridPane.columnIndex="4" GridPane.rowIndex="13" />
+      <Button fx:id="searchButton" maxWidth="1.7976931348623157E308" mnemonicParsing="false" onAction="#searchButtonPressed" text="Search" GridPane.columnIndex="8" GridPane.columnSpan="4" GridPane.rowIndex="17" />
+      <ComboBox fx:id="cardSuperType" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="10" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Supertype" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="10" />
+      <Label maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" text="Card Type" GridPane.columnIndex="4" GridPane.columnSpan="3" GridPane.rowIndex="8" />
+      <ComboBox fx:id="cardType" maxWidth="1.7976931348623157E308" prefWidth="150.0" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="8" />
+      <FlowPane fx:id="cardSubTypePane" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="7" GridPane.columnSpan="8" GridPane.rowIndex="7" />
    </children>
 </GridPane>

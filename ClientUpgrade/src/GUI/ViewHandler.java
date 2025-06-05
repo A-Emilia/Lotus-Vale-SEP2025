@@ -20,6 +20,7 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import networking.clients.card.TCPCardClient;
 import networking.clients.user.TCPUserClient;
 import state.AppState;
 
@@ -106,7 +107,7 @@ public class ViewHandler {
       }
       case SEARCH -> {
         SearchController controller = loader.getController();
-        controller.init(new SearchVM());
+        controller.init(new SearchVM(new TCPCardClient()));
       }
     }
   }

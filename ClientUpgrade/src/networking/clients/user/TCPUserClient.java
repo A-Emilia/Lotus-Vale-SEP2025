@@ -2,33 +2,26 @@ package networking.clients.user;
 
 import communication.Request;
 import communication.RequestType;
+import communication.Response;
+import communication.ResponseType;
 import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;
 import model.entities.user.User;
 import networking.SocketClient;
 import state.AppState;
 
+import java.net.SocketTimeoutException;
+import java.util.Objects;
+
 public class TCPUserClient implements UserClient {
   @Override
-  public boolean login(LoginRequest loginRequest) {
+  public Response login(LoginRequest loginRequest) throws SocketTimeoutException {
     Request request = new Request(RequestType.USER, loginRequest);
-
-    Object inc = SocketClient.sendRequest(request);
-
-    switch (inc) {
-      case User res -> {
-        AppState.getInstance().login(res);
-        return true;
-      }
-
-      case null, default -> {
-        return false;
-      }
-    }
+    return SocketClient.sendRequest(request);
   }
 
   @Override
-  public boolean register(RegisterRequest registerRequest) {
+  public Response register(RegisterRequest registerRequest) throws SocketTimeoutException {
     Request request = new Request(RequestType.USER, registerRequest);
 
     Object inc = SocketClient.sendRequest(request);

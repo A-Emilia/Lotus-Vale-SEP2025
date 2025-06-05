@@ -2,11 +2,17 @@ package GUI.View.Login;
 
 import GUI.Shared.ViewType;
 import GUI.ViewHandler;
+import communication.Response;
+import communication.ResponseType;
 import javafx.event.ActionEvent;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
+import model.entities.user.User;
+import state.AppState;
+
+import java.net.SocketTimeoutException;
 
 public class LoginController {
   private LoginVM vm;
@@ -25,10 +31,17 @@ public class LoginController {
   }
 
   public void loginConfirmButtonPressed(ActionEvent actionEvent) {
-    if (vm.login()) {
-      ViewHandler.switchView(ViewType.MAIN);
-    } else {
-      errorLabel.textProperty().set("Unknown Error Occurred.");
+    try {
+      Response res = vm.login();
+
+      if (res.type() == ResponseType.OK) {
+        AppState.getInstance().login((User) res.payload());
+        ViewHandler.switchView(ViewType.MAIN);
+      } else {
+        errorLabel.textProperty().set((String) res.payload());
+      }
+    } catch (SocketTimeoutException e) {
+      errorLabel.textProperty().set("Connection timeout.");
     }
   }
 

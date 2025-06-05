@@ -14,10 +14,10 @@ public class SocketClient {
   private static final String HOST = "localhost";
   private static final int PORT = 4269;
 
-  public static Object sendRequest(Request request) {
+  public static Response sendRequest(Request request) throws SocketTimeoutException {
     try (Socket socket = new Socket()) {
-      socket.connect(new InetSocketAddress(HOST, PORT), 1000);
-      socket.setSoTimeout(1000);
+      socket.connect(new InetSocketAddress(HOST, PORT), 2000);
+      socket.setSoTimeout(2000);
 
       try (ObjectOutputStream out = new ObjectOutputStream(socket.getOutputStream());
           ObjectInputStream inc = new ObjectInputStream(socket.getInputStream())) {
@@ -28,14 +28,8 @@ public class SocketClient {
         Response response = (Response) inc.readObject();
         System.out.println("Socket Service Inc: " + response);
 
-        return switch (response.type()) {
-          case OK -> response.payload();
-          case ERROR -> null;
-        };
+        return response;
       }
-    } catch (SocketTimeoutException e) {
-      System.err.println("Operation timed out.");
-      return null;
     } catch (IOException | ClassNotFoundException e) {
       System.err.println("Operation failed: " + e.getMessage());
       return null;
