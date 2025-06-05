@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="768.0" styleClass="content_box" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.View.Search.SearchController">
+    <columnConstraints>
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+        <ColumnConstraints percentWidth="5.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+        <RowConstraints percentHeight="5.0" />
+    </rowConstraints>
+   <children>
+      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="10" GridPane.rowIndex="4" GridPane.rowSpan="10">
+        <columns>
+          <TableColumn prefWidth="75.0" text="C1" />
+          <TableColumn prefWidth="75.0" text="C2" />
+        </columns>
+      </TableView>
+   </children>
+</GridPane>

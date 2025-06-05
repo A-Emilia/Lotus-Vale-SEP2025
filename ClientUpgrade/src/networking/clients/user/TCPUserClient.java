@@ -23,18 +23,6 @@ public class TCPUserClient implements UserClient {
   @Override
   public Response register(RegisterRequest registerRequest) throws SocketTimeoutException {
     Request request = new Request(RequestType.USER, registerRequest);
-
-    Object inc = SocketClient.sendRequest(request);
-
-    switch (inc) {
-      case User res -> {
-        AppState.getInstance().login(res);
-        return true;
-      }
-
-      case null, default -> {
-        return false;
-      }
-    }
+    return SocketClient.sendRequest(request);
   }
 }

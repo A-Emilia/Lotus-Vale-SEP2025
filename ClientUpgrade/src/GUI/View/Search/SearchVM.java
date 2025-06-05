@@ -1,5 +1,6 @@
 package GUI.View.Search;
 
+import communication.Response;
 import communication.requests.card_requests.ColorSort;
 import communication.requests.card_requests.GetCardRequest;
 import javafx.beans.property.*;
@@ -9,6 +10,7 @@ import model.entities.card.components.CardSupertype;
 import model.entities.card.components.CardType;
 import networking.clients.card.CardClient;
 
+import java.net.SocketTimeoutException;
 import java.util.ArrayList;
 
 public class SearchVM {
@@ -28,7 +30,7 @@ public class SearchVM {
   private final BooleanProperty blackManaProperty = new SimpleBooleanProperty();
   private final BooleanProperty greenManaProperty = new SimpleBooleanProperty();
   private final BooleanProperty colorlessManaProperty = new SimpleBooleanProperty();
-  private final ObjectProperty<ColorSort> manaSortProperty = new SimpleObjectProperty<>();
+  private final ObjectProperty<ColorSort> colorSortProperty = new SimpleObjectProperty<>();
   private final BooleanProperty commanderProperty = new SimpleBooleanProperty();
   private final ListProperty<String> subtypeProperty = new SimpleListProperty<>(FXCollections.observableArrayList());
   private final ListProperty<CardType> typeProperty = new SimpleListProperty<>(FXCollections.observableArrayList());
@@ -43,7 +45,7 @@ public class SearchVM {
   public BooleanProperty blackManaProperty() {return blackManaProperty;}
   public BooleanProperty greenManaProperty() {return greenManaProperty;}
   public BooleanProperty colorlessManaProperty() {return colorlessManaProperty;}
-  public ObjectProperty<ColorSort> manaSortProperty() {return manaSortProperty;}
+  public ObjectProperty<ColorSort> colorSortProperty() {return colorSortProperty;}
   public BooleanProperty commanderProperty() {return commanderProperty;}
   public ListProperty<String> subtypeProperty() {return subtypeProperty;}
   public ListProperty<CardType> typeProperty() {return typeProperty;}
@@ -54,6 +56,7 @@ public class SearchVM {
     System.out.println("Name: " + nameSearchProperty);
     System.out.println("Text: " + textSearchProperty);
     System.out.println("Set Code: " + setCodeProperty);
+    System.out.println("Color Sort: " + colorSortProperty);
     System.out.println("White Mana: " + whiteManaProperty);
     System.out.println("Red Mana: " + redManaProperty);
     System.out.println("Blue Mana: " + blueManaProperty);
@@ -67,7 +70,7 @@ public class SearchVM {
     System.out.println("Supertypes " + supertypeProperty);
   }
 
-  public ArrayList<Card> search() {
+  public Response search() throws SocketTimeoutException {
 
     ArrayList<String> subtypeList = new ArrayList<>(subtypeProperty);
     ArrayList<CardType> typeList = new ArrayList<>(typeProperty);
@@ -81,6 +84,7 @@ public class SearchVM {
         subtypeList,
         typeList,
         superTypeList,
+        colorSortProperty.get(),
         whiteManaProperty.get(),
         blueManaProperty.get(),
         blackManaProperty.get(),
@@ -89,17 +93,6 @@ public class SearchVM {
         colorlessManaProperty.get(),
         commanderProperty.get());
 
-    try {
-      ArrayList<Card> cards = cardClient.getCard(cardRequest);
-
-      for (Card card : cards) {
-        System.out.println(card.toString());
-      }
-
-      return cards;
-    }
-    catch (Exception e) {
-      throw new RuntimeException(e);
-    }
+    return cardClient.getCard(cardRequest);
   }
 }

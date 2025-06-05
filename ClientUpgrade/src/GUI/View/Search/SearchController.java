@@ -2,6 +2,8 @@ package GUI.View.Search;
 
 import communication.requests.card_requests.ColorSort;
 import javafx.beans.binding.Bindings;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.value.ObservableObjectValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
@@ -13,6 +15,7 @@ import javafx.scene.layout.FlowPane;
 import model.entities.card.components.CardSupertype;
 import model.entities.card.components.CardType;
 
+import java.net.SocketTimeoutException;
 import java.util.Objects;
 
 public class SearchController {
@@ -22,7 +25,7 @@ public class SearchController {
   @FXML private FlowPane cardSuperTypePane;
   @FXML private FlowPane cardTypePane;
 
-  private ObservableList<String> colorSortOptions;
+  private ObservableList<ColorSort> manaSortOptions;
   private ObservableList<CardType> typeSortOptions;
   private ObservableList<CardSupertype> supertypeSortOptions;
   private final ObservableList<String> selectedCardSubTypes = FXCollections.observableArrayList();
@@ -38,7 +41,7 @@ public class SearchController {
   @FXML private ComboBox<CardType> cardType;
   @FXML private TextField subtypeField;
   @FXML private CheckBox commanderCheckBox;
-  @FXML private ComboBox<String> colorSort;
+  @FXML private ComboBox<ColorSort> colorSort;
   @FXML private CheckBox whiteManaCheck;
   @FXML private CheckBox redManaCheck;
   @FXML private CheckBox blueManaCheck;
@@ -76,6 +79,7 @@ public class SearchController {
     Bindings.bindContentBidirectional(selectedCardSubTypes, vm.subtypeProperty());
     Bindings.bindContentBidirectional(selectedCardTypes, vm.typeProperty());
     Bindings.bindContentBidirectional(selectedCardSupertypes, vm.supertypeProperty());
+    colorSort.valueProperty().bindBidirectional(vm.colorSortProperty());
   }
 
   private void setupManaSymbols() {
@@ -134,14 +138,8 @@ public class SearchController {
   }
 
   private void setupColorSortOptions() {
-    colorSortOptions = FXCollections.observableArrayList(
-        ColorSort.EXACT.getDesc(),
-        ColorSort.AT_LEAST.getDesc(),
-        ColorSort.AT_MOST.getDesc()
-    );
-
-    colorSort.setItems(colorSortOptions);
-    colorSort.getSelectionModel().selectFirst();
+    manaSortOptions = FXCollections.observableArrayList(ColorSort.values());
+    colorSort.setItems(manaSortOptions);
   }
 
   private void setupSupertypeOptions() {
@@ -156,10 +154,10 @@ public class SearchController {
 
   private void updateColorSortOptions() {
     commanderCheckBox.selectedProperty().addListener((obs, oldVal, isChecked) -> {
-      String currentlySelected = colorSort.getValue();
-      ObservableList<String> newList = FXCollections.observableArrayList(colorSortOptions);
+      ColorSort currentlySelected = colorSort.getValue();
+      ObservableList<ColorSort> newList = FXCollections.observableArrayList(manaSortOptions);
 
-      if (isChecked) {newList.remove(ColorSort.AT_LEAST.getDesc());}
+      if (isChecked) {newList.remove(ColorSort.AT_LEAST);}
 
       colorSort.setItems(newList);
 
@@ -179,7 +177,7 @@ public class SearchController {
     checkBox.setContentDisplay(javafx.scene.control.ContentDisplay.LEFT);
   }
 
-  public void searchButtonPressed(ActionEvent actionEvent) {
-    vm.verifySearchParameters();
+  public void searchButtonPressed(ActionEvent actionEvent) throws SocketTimeoutException {
+    vm.search();
   }
 }

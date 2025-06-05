@@ -1,17 +1,15 @@
 package communication.requests.card_requests;
 
 public enum ColorSort {
-  EXACT("Exactly these colors."),
-  AT_MOST("At most these colors."),
-  AT_LEAST("Including these colors.");
+  EXACT,
+  AT_MOST,
+  AT_LEAST;
 
-  private final String desc;
-
-  ColorSort(String desc) {
-    this.desc = desc;
-  }
-
-  public String getDesc() {
-    return desc;
+  public String toString() {
+    return switch(this) {
+      case EXACT -> "Exactly these colors.";
+      case AT_MOST -> "At most these colors.";
+      case AT_LEAST -> "Including these colors.";
+    };
   }
 }

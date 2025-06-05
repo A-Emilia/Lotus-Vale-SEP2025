@@ -33,7 +33,7 @@ public class LoginVM {
     return userClient.login(loginRequest);
   }
 
-  public Response register() {
+  public Response register() throws SocketTimeoutException {
     RegisterRequest registerRequest = new RegisterRequest(usernameFieldProperty.get(), passwordFieldProperty().get());
     return userClient.register(registerRequest);
   }

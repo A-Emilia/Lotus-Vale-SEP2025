@@ -46,10 +46,17 @@ public class LoginController {
   }
 
   public void registerConfirmButtonPressed(ActionEvent actionEvent) {
-    if (vm.register()) {
-      ViewHandler.switchView(ViewType.MAIN);
-    } else {
-      errorLabel.textProperty().set("Unknown Error Occurred.");
+    try {
+      Response res = vm.register();
+
+      if (res.type() == ResponseType.OK) {
+        AppState.getInstance().login((User) res.payload());
+        ViewHandler.switchView(ViewType.MAIN);
+      } else {
+        errorLabel.textProperty().set((String) res.payload());
+      }
+    } catch (SocketTimeoutException e) {
+      errorLabel.textProperty().set("Connection timeout.");
     }
   }
 }
