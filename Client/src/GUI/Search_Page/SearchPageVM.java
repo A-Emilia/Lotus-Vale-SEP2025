@@ -43,29 +43,4 @@ public class SearchPageVM {
   }
 
 
-  public ArrayList<Card> search() {
-
-    GetCardRequest cardRequest = new GetCardRequest(null, nameSearchProperty().get(), null, textSearchProperty.get());
-
-    try {
-      ArrayList<Card> cards = cardClient.getCard(cardRequest);
-
-      for (Card card : cards) {
-        System.out.println(card.toString());
-      }
-
-      return cards;
-    }
-    catch (Exception e) {
-      throw new RuntimeException(e);
-    }
-  }
-
-  public ReadOnlyBooleanProperty loggedInProperty() {
-    return loggedIn.getReadOnlyProperty();
-  }
-
-  public ReadOnlyStringWrapper usernameProperty() {
-    return username;
-  }
 }

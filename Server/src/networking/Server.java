@@ -7,19 +7,12 @@ import java.net.ServerSocket;
 import java.net.Socket;
 
 public class Server {
-
-  private final ServiceProvider serviceProvider;
-
-  public Server(ServiceProvider serviceProvider) {
-    this.serviceProvider = serviceProvider;
-  }
-
   public void start() throws IOException {
     ServerSocket serverSocket = new ServerSocket(4269);
 
     while (true) {
       Socket socket = serverSocket.accept();
-      MainSocketHandler socketHandler = new MainSocketHandler(socket, serviceProvider);
+      MainSocketHandler socketHandler = new MainSocketHandler(socket);
       Thread socketThread = new Thread(socketHandler);
       socketThread.start();
     }

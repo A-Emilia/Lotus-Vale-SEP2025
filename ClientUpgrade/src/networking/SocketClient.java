@@ -14,7 +14,7 @@ public class SocketClient {
   private static final String HOST = "localhost";
   private static final int PORT = 4269;
 
-  public static Response sendRequest(Request request) throws SocketTimeoutException {
+  public static Response sendRequest(Request request) {
     try (Socket socket = new Socket()) {
       socket.connect(new InetSocketAddress(HOST, PORT), 2000);
       socket.setSoTimeout(2000);

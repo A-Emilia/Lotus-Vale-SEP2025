@@ -33,10 +33,7 @@ public class SearchPageController implements ViewController {
     /*
      Initializing things I am not talented enough at making persist across multiple views.
      */
-    myCardsMenuButton.disableProperty().bind(vm.loggedInProperty().not());
-    collectionsMenuButton.disableProperty().bind(vm.loggedInProperty().not());
-    loginButton.textProperty().bind(vm.usernameProperty());
-    loginButton.disableProperty().bind(vm.loggedInProperty());
+
   }
 
   public void loginButtonPressed(ActionEvent actionEvent) {
@@ -64,6 +61,6 @@ public class SearchPageController implements ViewController {
   }
 
   public void searchButtonPressed(ActionEvent actionEvent) {
-    ViewHandler.showViewWithResource(ViewTypeWithResource.SEARCH_RESULT, vm.search());
+
   }
 }

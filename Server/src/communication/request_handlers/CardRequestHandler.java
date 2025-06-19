@@ -4,7 +4,7 @@ import communication.requests.card_requests.*;
 import communication.services.card.CardService;
 
 public class CardRequestHandler implements RequestHandler {
-private final CardService cardService;
+  private final CardService cardService;
 
   public CardRequestHandler(CardService cardService) {
     this.cardService = cardService;

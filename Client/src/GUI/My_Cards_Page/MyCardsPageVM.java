@@ -27,9 +27,7 @@ public class  MyCardsPageVM {
 
     CollectionTarget target = new CollectionTarget(TargetType.MAIN_COLLECTION, null, AppState.getLoggedInUser().getId());
 
-    ArrayList<Card> cardArrayList = cardClient.getCollection(new GetCardRequest(target, null, null, null));
     //ArrayList<Card> cardArrayList = cardClient.getCollection(new GetCollectionRequest(AppState.getLoggedInUser().getId()));
-    cards.addAll(cardArrayList);
 
     User user = AppState.getLoggedInUser();
     loggedIn.set(user != null);
