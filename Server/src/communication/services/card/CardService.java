@@ -1,14 +1,15 @@
 package communication.services.card;
 
-import communication.ResponseType;
-import communication.requests.card_requests.*;
-import model.entities.card.Card;
+import communication.Response;
+import communication.requests.card_requests.AddCardRequest;
+import communication.requests.card_requests.EditCardRequest;
+import communication.requests.card_requests.GetCardRequest;
+import communication.requests.card_requests.RemoveCardRequest;
 
-import java.util.ArrayList;
-
-public interface CardService {
-  ArrayList<Card> getCard(GetCardRequest payload);
-  ResponseType addCard(AddCardRequest payload);
-  ResponseType removeCard(RemoveCardRequest payload);
-  ArrayList<Card> editCard(EditCardRequest payload);
+public interface CardService
+{
+    Response getCard(GetCardRequest payload);
+    Response addCard(AddCardRequest payload);
+    Response removeCard(RemoveCardRequest payload);
+    Response editCard(EditCardRequest payload);
 }

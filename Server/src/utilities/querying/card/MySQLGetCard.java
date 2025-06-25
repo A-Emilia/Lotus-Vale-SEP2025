@@ -193,7 +193,7 @@ public class MySQLGetCard implements QueryBuilder {
   }
 
   public PreparedStatement build(Connection con) throws SQLException {
-    String finalSql = "SELECT c.*, ci.multiverseId" + fromClause + whereClause;
+    String finalSql = "SELECT c.*, ci.multiverseId, ci.scryfallId" + fromClause + whereClause;
     PreparedStatement res = con.prepareStatement(finalSql);
 
     for (int i = 0; i < cardParam.size(); i++) {

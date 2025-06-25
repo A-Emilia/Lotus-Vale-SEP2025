@@ -10,8 +10,6 @@ public class AppState {
   private static final AppState instance = new AppState();
   private final ObjectProperty<User> currentUser = new SimpleObjectProperty<>();
 
-  private AppState() {}
-
   public static AppState getInstance() {return instance;}
   public ObjectProperty<User> userProperty() {return currentUser;}
   public User getUser() {return currentUser.get();}

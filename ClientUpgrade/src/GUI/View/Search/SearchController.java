@@ -1,5 +1,10 @@
 package GUI.View.Search;
 
+import GUI.Shared.ResourcedViewType;
+import GUI.Shared.ViewType;
+import GUI.ViewHandler;
+import communication.Response;
+import communication.ResponseType;
 import communication.requests.card_requests.ColorSort;
 import javafx.beans.binding.Bindings;
 import javafx.beans.property.ObjectProperty;
@@ -178,6 +183,15 @@ public class SearchController {
   }
 
   public void searchButtonPressed(ActionEvent actionEvent) throws SocketTimeoutException {
-    vm.search();
+    try {
+      Response res = vm.search();
+
+      if (res.type() == ResponseType.OK) {
+        ViewHandler.switchResourcedView(ResourcedViewType.SEARCH_RESULT, res.payload());
+      }
+
+    } catch (Exception e) {
+      throw new RuntimeException(e);
+    }
   }
 }

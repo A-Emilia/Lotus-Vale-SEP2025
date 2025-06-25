@@ -78,7 +78,7 @@ public class SearchVM {
 
     GetCardRequest cardRequest = new GetCardRequest(
         null,
-        nameSearchProperty().get(),
+        nameSearchProperty.get(),
         setCodeProperty.get(),
         textSearchProperty.get(),
         subtypeList,

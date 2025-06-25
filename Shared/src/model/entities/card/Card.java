@@ -18,6 +18,7 @@ public class Card implements Serializable {
   private final ArrayList<CardType> cardType;
   private final ArrayList<String> subtype;
   private final Integer multiverseId;
+  private final String scryfallId;
   private final String imgUrl;
 
   private Card(Builder builder) {
@@ -27,6 +28,7 @@ public class Card implements Serializable {
     this.name = builder.name;
     this.text = builder.text;
     this.multiverseId = builder.multiverseId;
+    this.scryfallId = builder.scryfallId;
 
     // Types
     this.supertype = builder.supertype;
@@ -66,8 +68,9 @@ public class Card implements Serializable {
       // Subtype
       // url
       Integer multiverseId = rs.getInt("multiverseId");
+      String scryfallId = rs.getString("scryfallId");
 
-      Card card = new Card.Builder(id, setCode)
+      Card card = new Builder(id, setCode)
           .name(name)
           //.manaCost()
           .text(text)
@@ -76,7 +79,9 @@ public class Card implements Serializable {
           //.subtype()
           //.url()
           .multiverseId(multiverseId)
-          .gathererImgUrl()
+          .scryfallId(scryfallId)
+          //.gathererImgUrl()
+          .scryfallImgUrl()
           .build();
       cards.add(card);
     }
@@ -94,6 +99,7 @@ public class Card implements Serializable {
     private ArrayList<CardType> cardType;
     private ArrayList<String> subtype;
     private Integer multiverseId;
+    private String scryfallId;
     private String imgUrl;
 
     public Builder(int id, String setCode) {
@@ -160,6 +166,11 @@ public class Card implements Serializable {
       return this;
     }
 
+    public Builder scryfallId(String scryfallId) {
+      this.scryfallId = scryfallId;
+      return this;
+    }
+
     public Builder imgUrl(String imgUrl) {
       this.imgUrl = imgUrl;
       return this;
@@ -168,6 +179,22 @@ public class Card implements Serializable {
     public Builder gathererImgUrl() {
       if (this.multiverseId == null) {multiverseId = 0;}
       this.imgUrl = "https://gatherer.wizards.com/Handlers/Image.ashx?multiverseid=" + this.multiverseId + "&type=card";
+      return this;
+    }
+
+    public Builder scryfallImgUrl() {
+      if (this.scryfallId == null) {
+        return this;
+      }
+
+      this.imgUrl = "https://cards.scryfall.io/large/front/"
+          + this.scryfallId.charAt(0)
+          + "/"
+          + this.scryfallId.charAt(1)
+          + "/"
+          + this.scryfallId
+          + ".jpg";
+
       return this;
     }
 

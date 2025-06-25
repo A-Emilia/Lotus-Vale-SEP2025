@@ -1,5 +1,7 @@
 package persistence.user;
 
+import communication.Response;
+import communication.ResponseType;
 import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;
 import model.entities.user.User;
@@ -14,55 +16,66 @@ import java.sql.SQLException;
 
 public class UserMySQLDao implements UserDao {
   @Override
-  public User login(LoginRequest payload) {
-    // Establish connection to database and run query constructed via
-    // the MySQLUserQuery class. Also run appropriate checks.
-    // Purely testing as of right now.
-
-    MySQLLogin loginQuery = MySQLLogin.getUserLogin(payload);
-
+  public Response login(LoginRequest payload) {
     try (Connection con = DatabaseConnector.getConnection();
-        PreparedStatement sqlStatement = loginQuery.build(con)) {
+        ResultSet rs = getUserByUsername(con, payload.username())) {
 
-      ResultSet rs = sqlStatement.executeQuery();
+      if (!rs.next()) {
+        return new Response(ResponseType.ERROR, "Username does not exist.");
+      }
 
-      return User.sqlToUser(rs);
-    }
-    catch (SQLException e) {
-      throw new RuntimeException(e);
+      String storedPassword = rs.getString("password");
+      if (!storedPassword.equals(payload.password())) {
+        return new Response(ResponseType.ERROR, "Incorrect password.");
+      }
+
+      User user = User.sqlToUser(rs);
+      return new Response(ResponseType.OK, user);
+
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return new Response(ResponseType.ERROR, "An unknown error has occurred.");
     }
   }
 
   @Override
-  public User register(RegisterRequest payload) {
-
+  public Response register(RegisterRequest payload) {
     try (Connection con = DatabaseConnector.getConnection();
-        PreparedStatement registerQuery = MySQLRegister.build(con, payload)) {
+        ResultSet rs = getUserByUsername(con, payload.username())) {
 
-
-      int affectedRows = registerQuery.executeUpdate();
-
-      if (affectedRows == 0) {
-        throw new IllegalStateException("Username already taken.");
+      if (rs.next()) {
+        return new Response(ResponseType.ERROR, "Username already taken.");
       }
 
-      try (ResultSet rs = registerQuery.getGeneratedKeys()) {
-        if (rs.next()) {
-          int id = rs.getInt(1);
+      try (PreparedStatement registerQuery = MySQLRegister.build(con, payload)) {
+        int affectedRows = registerQuery.executeUpdate();
 
-          User user = new User.Builder(id)
-              .username(payload.username())
-              .build();
+        if (affectedRows == 0) {
+          return new Response(ResponseType.ERROR, "Registration failed.");
+        }
 
-          System.out.println(user.toString());
+        try (ResultSet generatedKeys = registerQuery.getGeneratedKeys()) {
+          if (generatedKeys.next()) {
+            int id = generatedKeys.getInt(1);
+            User user = new User.Builder(id)
+                .username(payload.username())
+                .build();
 
-          return user;
+            return new Response(ResponseType.OK, user);
+          }
         }
       }
+    } catch (SQLException e) {
+      e.printStackTrace();
+      return new Response(ResponseType.ERROR, "An unknown error occurred during registration.");
     }
-    catch (SQLException e) {
-      throw new RuntimeException(e);
-    }
-    return null;
+    return new Response(ResponseType.ERROR, "Unexpected failure.");
+  }
+
+  private ResultSet getUserByUsername(Connection con, String username) throws SQLException {
+    String sql = "SELECT * FROM user WHERE username = ?";
+    PreparedStatement res = con.prepareStatement(sql);
+    res.setString(1, username);
+    return res.executeQuery();
   }
 }

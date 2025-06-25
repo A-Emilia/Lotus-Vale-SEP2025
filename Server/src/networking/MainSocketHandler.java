@@ -43,7 +43,11 @@ public class MainSocketHandler implements Runnable {
     };
 
     Object res = handler.handle(request.payload());
-    Response response = new Response(ResponseType.OK, res);
-    out.writeObject(response);
+    if (res instanceof Response) {
+      out.writeObject(res);
+    } else {
+      Response response = new Response(ResponseType.OK, res);
+      out.writeObject(response);
+    }
   }
 }

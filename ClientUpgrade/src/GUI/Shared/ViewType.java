@@ -6,7 +6,8 @@ public enum ViewType {
   COLLECTION("Collection/Collection.fxml"),
   DECK("Deck/Deck.fxml"),
   PROFILE("Profile/Profile.fxml"),
-  SEARCH("Search/Search.fxml");
+  SEARCH("Search/Search.fxml"),
+  SEARCH_RESULT("SearchResult/SearchResult.fxml");
 
 
   private final String fxmlPath;

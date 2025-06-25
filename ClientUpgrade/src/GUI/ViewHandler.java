@@ -1,5 +1,6 @@
 package GUI;
 
+import GUI.Shared.ResourcedViewType;
 import GUI.Shared.ViewType;
 import GUI.View.Collection.CollectionController;
 import GUI.View.Collection.CollectionVM;
@@ -13,6 +14,8 @@ import GUI.View.Profile.ProfileController;
 import GUI.View.Profile.ProfileVM;
 import GUI.View.Search.SearchController;
 import GUI.View.Search.SearchVM;
+import GUI.View.SearchResult.SearchResultController;
+import GUI.View.SearchResult.SearchResultVM;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
@@ -20,11 +23,13 @@ import javafx.scene.control.*;
 import javafx.scene.image.Image;
 import javafx.scene.layout.*;
 import javafx.stage.Stage;
+import model.entities.card.Card;
 import networking.clients.card.TCPCardClient;
 import networking.clients.user.TCPUserClient;
 import state.AppState;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Objects;
 
 public class ViewHandler {
@@ -112,9 +117,34 @@ public class ViewHandler {
     }
   }
 
+  public static void switchResourcedView(ResourcedViewType view, Object resource) {
+    try {
+      FXMLLoader loader = new FXMLLoader(ViewHandler.class.getResource(view.getFxmlPath()));
+      Parent parentView = loader.load();
+
+      initializeResourcedController(view, loader, resource);
+
+      rootLayout.setCenter(parentView);
+    }
+    catch (IOException | RuntimeException e) {
+      e.printStackTrace();
+      Label errorLabel = new Label("Failed to load view: " + view + "\n" + e.getMessage());
+      rootLayout.setCenter(errorLabel);
+    }
+  }
+
+  private static void initializeResourcedController(ResourcedViewType type, FXMLLoader loader, Object resource) {
+    switch (type) {
+      case SEARCH_RESULT -> {
+        SearchResultController controller = loader.getController();
+        controller.init(new SearchResultVM(new TCPCardClient(), (ArrayList<Card>) resource));
+      }
+    }
+  }
 
 
-  public static BackgroundImage createBackground() {
+
+  private static BackgroundImage createBackground() {
     return new BackgroundImage(
         new Image(
             "/GUI/Shared/Black_Lotus.jpg",

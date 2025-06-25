@@ -3,6 +3,7 @@ package communication.request_handlers;
 import communication.requests.user_requests.LoginRequest;
 import communication.requests.user_requests.RegisterRequest;
 import communication.services.user.UserService;
+import communication.services.user.UserServiceOld;
 
 public class UserRequestHandler implements RequestHandler {
   private final UserService userService;

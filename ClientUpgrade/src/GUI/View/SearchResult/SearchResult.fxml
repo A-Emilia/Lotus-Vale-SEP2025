@@ -1,12 +1,15 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SplitMenuButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.RowConstraints?>
 
-<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="768.0" styleClass="content_box" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.View.Search.SearchController">
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="864.0" prefWidth="1536.0" styleClass="content_box" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="GUI.View.SearchResult.SearchResultController">
     <columnConstraints>
         <ColumnConstraints percentWidth="5.0" />
         <ColumnConstraints percentWidth="5.0" />
@@ -52,11 +55,17 @@
         <RowConstraints percentHeight="5.0" />
     </rowConstraints>
    <children>
-      <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="4" GridPane.columnSpan="10" GridPane.rowIndex="4" GridPane.rowSpan="10">
-        <columns>
-          <TableColumn prefWidth="75.0" text="C1" />
-          <TableColumn prefWidth="75.0" text="C2" />
-        </columns>
+      <ImageView fx:id="cardDisplay" fitHeight="331.0" fitWidth="233.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="14" GridPane.columnSpan="4" GridPane.rowIndex="6" GridPane.rowSpan="5" />
+      <TableView fx:id="resultTable" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" GridPane.columnIndex="3" GridPane.columnSpan="7" GridPane.rowIndex="2" GridPane.rowSpan="16">
+         <columns>
+            <TableColumn fx:id="nameCol" prefWidth="272.0" text="Card Name" />
+            <TableColumn fx:id="setCol" prefWidth="264.0" text="Set Code" />
+         </columns>
       </TableView>
+      <SplitMenuButton fx:id="addButtonsMenu" alignment="CENTER" maxWidth="1.7976931348623157E308" mnemonicParsing="false" text="Add to" GridPane.columnIndex="14" GridPane.columnSpan="3" GridPane.rowIndex="13">
+         <items>
+            <MenuItem fx:id="addToCollectionButton" mnemonicParsing="false" onAction="#addToCollectionButtonPressed" text="Collection" />
+         </items>
+      </SplitMenuButton>
    </children>
 </GridPane>
