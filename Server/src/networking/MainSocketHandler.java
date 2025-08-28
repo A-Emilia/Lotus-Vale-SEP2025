@@ -21,9 +21,9 @@ public class MainSocketHandler implements Runnable {
 
   @Override
   public void run() {
-    try {
-      ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
-      ObjectInputStream inc = new ObjectInputStream(clientSocket.getInputStream());
+    try (ObjectOutputStream out = new ObjectOutputStream(clientSocket.getOutputStream());
+         ObjectInputStream inc = new ObjectInputStream(clientSocket.getInputStream())) {
+
       handleRequest(inc, out);
 
     } catch (Exception e) {

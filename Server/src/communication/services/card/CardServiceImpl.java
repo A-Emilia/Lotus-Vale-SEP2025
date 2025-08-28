@@ -11,8 +11,7 @@ import persistence.card.CardDao;
 
 import java.util.ArrayList;
 
-public class CardServiceImpl implements CardService
-{
+public class CardServiceImpl implements CardService {
   private final CardDao cardDao;
 
   public CardServiceImpl(CardDao cardDao) {
@@ -21,7 +20,6 @@ public class CardServiceImpl implements CardService
 
   @Override public Response getCard(GetCardRequest payload) {
     ArrayList<Card> res = cardDao.getCard(payload);
-    // Convert to some sort of DTO? I feel I definitely do not need it.
     // Error handling.
 
     if (res.isEmpty()) {

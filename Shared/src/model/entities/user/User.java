@@ -26,8 +26,6 @@ public class User implements Serializable {
   }
 
   public static User sqlToUser(ResultSet rs) throws SQLException {
-      rs.next();
-
       int id = rs.getInt("id");
       String username = rs.getString("username");
 

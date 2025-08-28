@@ -2,6 +2,7 @@ package networking;
 
 import communication.Request;
 import communication.Response;
+import communication.ResponseType;
 
 import java.io.IOException;
 import java.io.ObjectInputStream;
@@ -32,7 +33,7 @@ public class SocketClient {
       }
     } catch (IOException | ClassNotFoundException e) {
       System.err.println("Operation failed: " + e.getMessage());
-      return null;
+      return new Response(ResponseType.ERROR, e.getMessage());
     }
   }
 }

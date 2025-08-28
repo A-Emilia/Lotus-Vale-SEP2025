@@ -33,7 +33,6 @@ public class SearchPageController implements ViewController {
     /*
      Initializing things I am not talented enough at making persist across multiple views.
      */
-
   }
 
   public void loginButtonPressed(ActionEvent actionEvent) {
